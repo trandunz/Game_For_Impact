@@ -12,6 +12,7 @@ public class Script_TaskInteractable : MonoBehaviour
     public void Interact()
     {
         UIPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
     #endregion
 }

@@ -6,9 +6,11 @@ public class Script_BaseTaskPanel : MonoBehaviour
 {
     #region Private
     Script_Player Player;
+    Script_ThreatLevel ThreatLevelMeter;
     private void Start()
     {
         Player = FindObjectOfType<Script_Player>();
+        ThreatLevelMeter = FindObjectOfType<Script_ThreatLevel>();
     }
     #endregion
 
@@ -16,6 +18,7 @@ public class Script_BaseTaskPanel : MonoBehaviour
     public void CloseTask()
     {
         Player.SetInteracting(false);
+        ThreatLevelMeter.DecreaseThreatLevel(25);
     }
     #endregion
 }

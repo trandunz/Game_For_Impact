@@ -8,7 +8,7 @@ public class Script_FirstPersonMotor : MonoBehaviour
     Camera FirstPersonCamera;
     GameObject Mesh;
     CharacterController CharacterController;
-    Script_Player Player;
+    Script_Player PlayerScript;
 
     float xMouseRotation = 0.0f;
     float yMouseRotation = 0.0f;
@@ -22,14 +22,14 @@ public class Script_FirstPersonMotor : MonoBehaviour
         FirstPersonCamera = GetComponentInChildren<Camera>();
         Mesh = GetComponentInChildren<MeshRenderer>().gameObject;
         CharacterController = GetComponent<CharacterController>();
-        Player = GetComponent<Script_Player>();
+        PlayerScript = GetComponent<Script_Player>();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
         ApplyGravity();
-        if (!Player.IsInteracting())
+        if (!PlayerScript.IsInteracting())
         {
             Vector3 input = Quaternion.Euler(0.0f, xMouseRotation, 0.0f) * GetMovementInput();
             HandleFPSCamera();

@@ -8,27 +8,36 @@ public class Script_Player : MonoBehaviour
     RaycastHit InteractHit;
     Camera FPSCamera;
     bool IsInteractingWithTask = false;
+    Script_InteractionText InteractionText;
 
     [SerializeField] float InteractionDistance = 3.0f;
     private void Start()
     {
         FPSCamera = GetComponentInChildren<Camera>();
+        InteractionText = FindObjectOfType<Script_InteractionText>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            Interact();
+        Interact();
     }
     private void Interact()
     {
+        InteractionText.ClearInteractionText();
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out InteractHit, InteractionDistance))
         {
             Transform hitTransform = InteractHit.transform;
             if (hitTransform.tag == "Interactable")
             {
-                Debug.Log("Interacted!");
-                IsInteractingWithTask = true;
-                hitTransform.GetComponent<Script_TaskInteractable>().Interact();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Interacted!");
+                    IsInteractingWithTask = true;
+                    hitTransform.GetComponent<Script_TaskInteractable>().Interact();
+                }
+                else if (!IsInteractingWithTask)
+                {
+                    InteractionText.ShowInteractionText();
+                }
             }
         }
     }

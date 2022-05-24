@@ -6,41 +6,55 @@ using UnityEngine.UI;
 public class Script_ThreatLevel : MonoBehaviour
 {
     #region Private
-    Slider ThreatSlider;
-    float ThrealLevel;
-    [SerializeField] float ThreatSpeed;
+    float ThreatlLevel;
     float ThreatPauseTimer = 0.0f;
+    Image[] ThreatImages;
+    [SerializeField] float ThreatLevelPerSecond;
     [SerializeField] float ThreatPauseTime = 0.0f;
-    // Start is called before the first frame update
+
     void Start()
     {
-        ThreatSlider = GetComponentInChildren<Slider>();
+        ThreatImages = GetComponentsInChildren<Image>();
+        foreach(Image image in ThreatImages)
+        {
+            image.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (ThreatPauseTimer > 0)
         {
             ThreatPauseTimer -= Time.deltaTime;
         }
-        else
+        else if (ThreatPauseTime < ThreatImages.Length)
         {
-            ThrealLevel += Time.deltaTime * ThreatSpeed;
+            ThreatlLevel += Time.deltaTime;
         }
-        ThreatSlider.value = ThrealLevel;
+
+        foreach(Image image in ThreatImages)
+        {
+            image.gameObject.SetActive(false);
+        }
+        for (int i = 0; i < (int)(ThreatlLevel / ThreatLevelPerSecond); i++)
+        {
+            if (i < ThreatImages.Length)
+                ThreatImages[i].gameObject.SetActive(true);
+            else
+                break;
+        }
     }
     #endregion
 
     #region Public
-    public void DecreaseThreatLevel(float _value)
+    public void DecreaseThreatLevel()
     {
-        ThrealLevel -= _value;
+        ThreatlLevel -= ThreatImages.Length / 5;
         ThreatPauseTimer = ThreatPauseTime;
-        if (ThrealLevel <= 0)
+        if (ThreatlLevel <= 0)
         {
-            ThrealLevel = 0;
+            ThreatlLevel = 0;
         }
     }
     #endregion

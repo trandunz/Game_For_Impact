@@ -673,5 +673,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 572886937016838637, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: ThreatSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572886937016838637, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: ThreatLevelPerSecond
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8919560423558190169, guid: 314c90de174fb8f4f873aa0008a48b6c, type: 3}
+    - {fileID: 5075640169074344852, guid: 314c90de174fb8f4f873aa0008a48b6c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 314c90de174fb8f4f873aa0008a48b6c, type: 3}

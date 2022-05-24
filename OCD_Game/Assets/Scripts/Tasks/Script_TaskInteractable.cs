@@ -6,6 +6,7 @@ public class Script_TaskInteractable : MonoBehaviour
 {
     #region Private
     [SerializeField] GameObject UIPanel;
+
     #endregion
 
     #region Public

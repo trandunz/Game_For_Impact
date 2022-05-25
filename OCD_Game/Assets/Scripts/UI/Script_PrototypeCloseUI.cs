@@ -24,7 +24,7 @@ public class Script_PrototypeCloseUI : MonoBehaviour
 
     private void Start()
     {
-        
+        Player = FindObjectOfType<Script_Player>();
     }
 
     private void Update()

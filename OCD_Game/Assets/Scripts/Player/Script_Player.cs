@@ -22,7 +22,8 @@ public class Script_Player : MonoBehaviour
     }
     private void Interact()
     {
-        InteractionText.ClearInteractionText();
+        if (InteractionText)
+            InteractionText.ClearInteractionText();
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out InteractHit, InteractionDistance))
         {
             Transform hitTransform = InteractHit.transform;
@@ -36,7 +37,8 @@ public class Script_Player : MonoBehaviour
                 }
                 else if (!IsInteractingWithTask)
                 {
-                    InteractionText.ShowInteractionText();
+                    if (InteractionText)
+                        InteractionText.ShowInteractionText();
                 }
             }
         }

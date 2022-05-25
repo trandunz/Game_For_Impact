@@ -28,7 +28,7 @@ public class Script_ThreatLevel : MonoBehaviour
         {
             ThreatPauseTimer -= Time.deltaTime;
         }
-        else if (ThreatPauseTime < ThreatImages.Length)
+        else if (ThreatlLevel < ThreatImages.Length)
         {
             ThreatlLevel += Time.deltaTime;
         }

@@ -60,5 +60,9 @@ public class Script_Player : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+    public void SetCharacterControllerActive(bool _active)
+    {
+        GetComponentInChildren<CharacterController>().gameObject.SetActive(_active);
+    }
     #endregion
 }

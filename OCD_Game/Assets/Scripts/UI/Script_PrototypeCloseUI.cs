@@ -41,6 +41,7 @@ public class Script_PrototypeCloseUI : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 Player.SetInteracting(false);
+                FindObjectOfType<Script_ThreatLevel>().DecreaseThreatLevel();
             }
         }
     }

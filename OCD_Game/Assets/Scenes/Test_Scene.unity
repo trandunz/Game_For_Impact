@@ -1767,7 +1767,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 2138010112851649842, guid: 9bece26af186b034fb52a955f8bf801a,
+      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -1981,7 +1981,7 @@ PrefabInstance:
     - target: {fileID: 471141569281416281, guid: 0233dd09bce53484ea374a68d6eaf754,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.92
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 471141569281416281, guid: 0233dd09bce53484ea374a68d6eaf754,
         type: 3}
@@ -1991,7 +1991,7 @@ PrefabInstance:
     - target: {fileID: 471141569281416281, guid: 0233dd09bce53484ea374a68d6eaf754,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.63
+      value: -10.63
       objectReference: {fileID: 0}
     - target: {fileID: 471141569281416281, guid: 0233dd09bce53484ea374a68d6eaf754,
         type: 3}

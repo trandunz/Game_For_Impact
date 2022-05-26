@@ -15,10 +15,11 @@ public class Script_BaseTaskPanel : MonoBehaviour
     #endregion
 
     #region Public
-    public void CloseTask()
+    public void CloseTask(bool _satisfying)
     {
         Player.SetInteracting(false);
-        ThreatLevelMeter.DecreaseThreatLevel();
+        if (_satisfying)
+            ThreatLevelMeter.DecreaseThreatLevel();
     }
     #endregion
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - InteractionText
+  - DisInfectPrompt
   layers:
   - Default
   - TransparentFX

@@ -266,6 +266,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 898334384947230829, guid: 3337e50155610044a8bc0943e5224f52,
         type: 3}
+    - target: {fileID: 3989013976822731314, guid: f373f79c08be04246bd683de66893d29,
+        type: 3}
+      propertyPath: NewsPrompt
+      value: 
+      objectReference: {fileID: 1374537423684191453}
     - target: {fileID: 7716459050542363800, guid: f373f79c08be04246bd683de66893d29,
         type: 3}
       propertyPath: m_Name

@@ -20,6 +20,10 @@ public class Script_DisInfectPrompt : MonoBehaviour
         {
             Prompt = Instantiate(Prompt, GameObject.FindObjectOfType<Canvas>().transform);
         }
+        
+    }
+    private void Awake()
+    {
         Prompt.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
@@ -27,8 +31,6 @@ public class Script_DisInfectPrompt : MonoBehaviour
         GameObject objectHit = other.gameObject;
         if (objectHit.tag == "Player")
         {
-            //objectHit.transform.position = gameObject.transform.root.position;
-            objectHit.GetComponentInChildren<Camera>().transform.rotation = Quaternion.Euler(0, 90, 0);
             Interact();
         }  
     }

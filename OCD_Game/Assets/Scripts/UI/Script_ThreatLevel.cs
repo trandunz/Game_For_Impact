@@ -30,14 +30,14 @@ public class Script_ThreatLevel : MonoBehaviour
         }
         else if (ThreatlLevel < ThreatImages.Length)
         {
-            ThreatlLevel += Time.deltaTime;
+            ThreatlLevel += Time.deltaTime * ThreatLevelPerSecond;
         }
 
         foreach(Image image in ThreatImages)
         {
             image.gameObject.SetActive(false);
         }
-        for (int i = 0; i < (int)(ThreatlLevel / ThreatLevelPerSecond); i++)
+        for (int i = 0; i < (int)(ThreatlLevel); i++)
         {
             if (i < ThreatImages.Length)
                 ThreatImages[i].gameObject.SetActive(true);
@@ -50,7 +50,7 @@ public class Script_ThreatLevel : MonoBehaviour
     #region Public
     public void DecreaseThreatLevel()
     {
-        ThreatlLevel -= ThreatImages.Length / 5;
+        ThreatlLevel -= (ThreatImages.Length / 5);
         ThreatPauseTimer = ThreatPauseTime;
         if (ThreatlLevel <= 0)
         {

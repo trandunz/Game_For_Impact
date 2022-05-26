@@ -530,6 +530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138010112851649842, guid: 9bece26af186b034fb52a955f8bf801a,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138010112851649842, guid: 9bece26af186b034fb52a955f8bf801a,
+        type: 3}
       propertyPath: m_TagString
       value: DisInfectPrompt
       objectReference: {fileID: 0}

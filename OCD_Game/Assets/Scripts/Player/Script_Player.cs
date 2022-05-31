@@ -59,6 +59,10 @@ public class Script_Player : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     public void SetCharacterControllerActive(bool _active)
     {

@@ -26,6 +26,10 @@ public class Script_PauseMenu : MonoBehaviour
             player.SetInteracting(false);
         }
     }
+    public bool IsPaused()
+    {
+        return isOpen;
+    }
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);

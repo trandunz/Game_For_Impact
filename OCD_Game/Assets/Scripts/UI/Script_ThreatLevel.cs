@@ -8,14 +8,16 @@ public class Script_ThreatLevel : MonoBehaviour
     #region Private
     float ThreatlLevel;
     float ThreatPauseTimer = 0.0f;
-    Image[] ThreatImages;
+    Script_PauseMenu PauseMenu;
+    [SerializeField] Image[] ThreatImages;
+    [SerializeField] Image MaxThreat;
     [SerializeField] float ThreatLevelPerSecond;
     [SerializeField] float ThreatPauseTime = 0.0f;
 
     void Start()
     {
-        ThreatImages = GetComponentsInChildren<Image>();
-        foreach(Image image in ThreatImages)
+        PauseMenu = FindObjectOfType<Script_PauseMenu>();
+        foreach (Image image in ThreatImages)
         {
             image.gameObject.SetActive(false);
         }
@@ -24,25 +26,32 @@ public class Script_ThreatLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ThreatPauseTimer > 0)
+        if (!PauseMenu.IsPaused())
         {
-            ThreatPauseTimer -= Time.deltaTime;
-        }
-        else if (ThreatlLevel < ThreatImages.Length)
-        {
-            ThreatlLevel += Time.deltaTime * ThreatLevelPerSecond;
-        }
+            if (ThreatPauseTimer > 0)
+            {
+                ThreatPauseTimer -= Time.deltaTime;
+            }
+            else if (ThreatlLevel < ThreatImages.Length)
+            {
+                ThreatlLevel += Time.deltaTime * ThreatLevelPerSecond;
+            }
 
-        foreach(Image image in ThreatImages)
-        {
-            image.gameObject.SetActive(false);
-        }
-        for (int i = 0; i < (int)(ThreatlLevel); i++)
-        {
-            if (i < ThreatImages.Length)
-                ThreatImages[i].gameObject.SetActive(true);
+            foreach (Image image in ThreatImages)
+            {
+                image.gameObject.SetActive(false);
+            }
+            for (int i = 0; i < (int)(ThreatlLevel); i++)
+            {
+                if (i < ThreatImages.Length)
+                    ThreatImages[i].gameObject.SetActive(true);
+                else
+                    break;
+            }
+            if (ThreatImages[ThreatImages.Length - 1].isActiveAndEnabled)
+                MaxThreat.gameObject.SetActive(true);
             else
-                break;
+                MaxThreat.gameObject.SetActive(false);
         }
     }
     #endregion

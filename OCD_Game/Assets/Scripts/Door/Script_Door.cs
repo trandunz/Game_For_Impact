@@ -7,25 +7,45 @@ public class Script_Door : MonoBehaviour
     GameObject Right, Left;
     GameObject Player;
     Animator DoorAnimation;
+    [SerializeField] bool IsLocked = false;
 
     private void Start()
     {
-        DoorAnimation = GetComponent<Animator>();
+        DoorAnimation = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !IsLocked)
         {
-            DoorAnimation.SetBool("Open", true);
+            OpenDoor();
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !IsLocked)
         {
-            DoorAnimation.SetBool("Open", false);
+            CloseDoor();
         }
+    }
+    public void CloseDoor()
+    {
+        DoorAnimation.SetBool("Open", false);
+    }
+    public void OpenDoor()
+    {
+        DoorAnimation.SetBool("Open", true);
+    }
+    public IEnumerator Lock(float _seconds)
+    {
+        if (!IsLocked)
+        {
+            IsLocked = true;
+            yield return new WaitForSeconds(_seconds);
+            IsLocked = false;
+        }
+        else
+            yield return null;
     }
 }

@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 78667690}
   - component: {fileID: 78667689}
   - component: {fileID: 78667688}
+  - component: {fileID: 78667691}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -251,6 +252,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78667691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78667687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bef3b3144e7c84cb233afda73dcec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lossPanel: {fileID: 7618526165712938991, guid: f41b15478f91f9a43b7d9c2c1ccb225d,
+    type: 3}
 --- !u!114 &104267647 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1869379912571964673, guid: 314c90de174fb8f4f873aa0008a48b6c,
@@ -2529,6 +2544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 471141569281416263, guid: 0233dd09bce53484ea374a68d6eaf754,
+        type: 3}
+      propertyPath: MovementSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 471141569281416280, guid: 0233dd09bce53484ea374a68d6eaf754,
         type: 3}
       propertyPath: m_Name

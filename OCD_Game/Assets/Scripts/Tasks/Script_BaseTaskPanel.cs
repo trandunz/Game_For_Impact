@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Script_BaseTaskPanel : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class Script_BaseTaskPanel : MonoBehaviour
         Player.SetInteracting(false);
         if (_satisfying)
             ThreatLevelMeter.DecreaseThreatLevel();
+    }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
     #endregion
 }

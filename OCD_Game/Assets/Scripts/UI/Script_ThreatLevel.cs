@@ -57,6 +57,10 @@ public class Script_ThreatLevel : MonoBehaviour
     #endregion
 
     #region Public
+    public float GetThreatLevel()
+    {
+        return ThreatlLevel / ThreatImages.Length;
+    }
     public void DecreaseThreatLevel()
     {
         ThreatlLevel -= (ThreatImages.Length / 5);

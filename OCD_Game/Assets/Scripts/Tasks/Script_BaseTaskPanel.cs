@@ -6,21 +6,26 @@ using UnityEngine.SceneManagement;
 public class Script_BaseTaskPanel : MonoBehaviour
 {
     #region Private
-    Script_Player Player;
-    Script_ThreatLevel ThreatLevelMeter;
-    private void Start()
+    protected Script_Player Player;
+    protected Script_TaskPanel TaskList;
+    protected bool Completed;
+    protected void Start()
     {
         Player = FindObjectOfType<Script_Player>();
-        ThreatLevelMeter = FindObjectOfType<Script_ThreatLevel>();
+        TaskList = FindObjectOfType<Script_TaskPanel>();
     }
     #endregion
 
     #region Public
     public void CloseTask(bool _satisfying)
     {
-        Player.SetInteracting(false);
-        if (_satisfying)
-            ThreatLevelMeter.DecreaseThreatLevel();
+        if (!Completed)
+        {
+            Player.SetInteracting(false);
+            if (_satisfying)
+                TaskList.CompleteTask();
+        }
+        Completed = true;
     }
     public void ReturnToMainMenu()
     {

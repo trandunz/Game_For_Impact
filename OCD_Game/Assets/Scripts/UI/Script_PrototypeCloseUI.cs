@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Script_PrototypeCloseUI : MonoBehaviour
+public class Script_PrototypeCloseUI : Script_BaseTaskPanel
 {
     int iCounter = 0;
-    [SerializeField] float fTimeTillClose = 0.2f;
-    [SerializeField] Script_Player Player;
+    [SerializeField] float fTimeTillClose = 0.2f;   
     [SerializeField] bool UnlockCursor;
+
     float fCounterTillClose = 0.0f;
 
     public void Increment()
@@ -22,26 +22,15 @@ public class Script_PrototypeCloseUI : MonoBehaviour
         Player.SetInteracting(true);
     }
 
-    private void Start()
-    {
-        Player = FindObjectOfType<Script_Player>();
-    }
-
     private void Update()
     {
-        if (UnlockCursor)
-        {
-            UnlockCursorFunction();
-        }
-
         if (iCounter >= 6)
         {
             fCounterTillClose += Time.deltaTime;
             if (fCounterTillClose >= fTimeTillClose)
             {
-                gameObject.SetActive(false);
-                Player.SetInteracting(false);
-                FindObjectOfType<Script_ThreatLevel>().DecreaseThreatLevel();
+                CloseTask(true);
+                this.gameObject.SetActive(false);
             }
         }
     }

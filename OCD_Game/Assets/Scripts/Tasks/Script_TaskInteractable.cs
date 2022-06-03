@@ -6,6 +6,7 @@ public class Script_TaskInteractable : MonoBehaviour
 {
     #region Private
     [SerializeField] GameObject TaskPanel;
+    [SerializeField] string TaskName;
     private void Start()
     {
         TaskPanel = Instantiate(TaskPanel, GameObject.FindObjectOfType<Canvas>().transform);
@@ -14,6 +15,10 @@ public class Script_TaskInteractable : MonoBehaviour
     #endregion
 
     #region Public
+    public string GetName()
+    {
+        return TaskName;
+    }
     public void Interact()
     {
         TaskPanel.SetActive(true);

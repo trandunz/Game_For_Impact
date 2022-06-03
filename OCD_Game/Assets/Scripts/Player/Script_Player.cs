@@ -9,10 +9,12 @@ public class Script_Player : MonoBehaviour
     Camera FPSCamera;
     bool IsInteractingWithTask = false;
     Script_InteractionText InteractionText;
+    Script_TaskPanel TaskList;
 
     [SerializeField] float InteractionDistance = 3.0f;
     private void Start()
     {
+        TaskList = FindObjectOfType<Script_TaskPanel>();
         FPSCamera = GetComponentInChildren<Camera>();
         InteractionText = FindObjectOfType<Script_InteractionText>();
     }
@@ -29,16 +31,20 @@ public class Script_Player : MonoBehaviour
             Transform hitTransform = InteractHit.transform;
             if (hitTransform.tag == "Interactable")
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                Script_TaskInteractable interactableScript = hitTransform.GetComponent<Script_TaskInteractable>();
+                if (interactableScript.GetName() == TaskList.GetCurrentTask())
                 {
-                    Debug.Log("Interacted!");
-                    IsInteractingWithTask = true;
-                    hitTransform.GetComponent<Script_TaskInteractable>().Interact();
-                }
-                else if (!IsInteractingWithTask)
-                {
-                    if (InteractionText)
-                        InteractionText.ShowInteractionText();
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        Debug.Log("Interacted!");
+                        IsInteractingWithTask = true;
+                        interactableScript.Interact();
+                    }
+                    else if (!IsInteractingWithTask)
+                    {
+                        if (InteractionText)
+                            InteractionText.ShowInteractionText();
+                    }
                 }
             }
         }

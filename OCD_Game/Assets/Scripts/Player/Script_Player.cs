@@ -26,25 +26,23 @@ public class Script_Player : MonoBehaviour
     {
         if (InteractionText)
             InteractionText.ClearInteractionText();
+
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out InteractHit, InteractionDistance))
         {
             Transform hitTransform = InteractHit.transform;
             if (hitTransform.tag == "Interactable")
             {
                 Script_TaskInteractable interactableScript = hitTransform.GetComponent<Script_TaskInteractable>();
-                if (interactableScript.GetName() == TaskList.GetCurrentTask())
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        Debug.Log("Interacted!");
-                        IsInteractingWithTask = true;
-                        interactableScript.Interact();
-                    }
-                    else if (!IsInteractingWithTask)
-                    {
-                        if (InteractionText)
-                            InteractionText.ShowInteractionText();
-                    }
+                    Debug.Log("Interacted!");
+                    IsInteractingWithTask = true;
+                    interactableScript.Interact();
+                }
+                else if (!IsInteractingWithTask)
+                {
+                    if (InteractionText)
+                        InteractionText.ShowInteractionText();
                 }
             }
         }

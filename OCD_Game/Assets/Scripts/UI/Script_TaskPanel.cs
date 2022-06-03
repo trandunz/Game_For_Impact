@@ -6,8 +6,11 @@ public class Script_TaskPanel : MonoBehaviour
 {
     [SerializeField] Text CurrentTask;
     [SerializeField] Text OtherTasks;
-    [SerializeField] List<string> tasks = new List<string>();
+    [SerializeField] List<string> NormalTasks = new List<string>();
     [SerializeField] List<string> OCDTasks = new List<string>();
+    List<string> Tasks = new List<string>();
+    List<string> CompletedOCDTasks = new List<string>();
+    List<string> CompletedNormalTasks = new List<string>();
 
     float RandomTaskTimer = 0.0f;
     [SerializeField] float RandomTaskInterval = 5.0f;
@@ -15,40 +18,88 @@ public class Script_TaskPanel : MonoBehaviour
 
     private void Start()
     {
+        foreach(string task in NormalTasks)
+        {
+            Tasks.Add(task);
+        }
     }
     private void Update()
     {
-        if (RandomTaskTimer < RandomTaskInterval && !FindObjectOfType<Script_Player>().IsInteracting())
-        {
-            RandomTaskTimer += Time.deltaTime;
-        }
-        else if (RandomTaskTimer >= RandomTaskInterval)
-        {
-            RandomTaskTimer = 0.0f;
-            AddOCDTask(OCDTasks[Random.Range(0, OCDTasks.Count)]);
-        }
-
         OtherTasks.text = "";
-        if (tasks.Count > 0)
+        if (Tasks.Count < 2)
         {
-            CurrentTask.text = tasks[0];
-
-            for(int i = 1; i < tasks.Count; i++)
-            {
-                OtherTasks.text += tasks[i] + "\n";
-            }
+            AddOCDTask(false);
+        }
+        if (Tasks.Count > 0)
+        {
+            CurrentTask.text = Tasks[0];
+            OtherTasks.text = Tasks[1];
         }
     }
     public string GetCurrentTask()
     {
-        return tasks[0];
-    }    
-    public void AddOCDTask(string _task)
-    {
-        tasks.Insert(0,_task);
+        return Tasks[0];
     }
-    public void CompleteTask()
+    public bool HasTask(string _task)
     {
-        tasks.RemoveAt(0);
+        if(_task == CurrentTask.text)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void AddOCDTask(bool _atStart)
+    {
+        string task = Tasks[0];
+        while (task == Tasks[0])
+        {
+            task = OCDTasks[Random.Range(0, OCDTasks.Count)];
+        }
+        if (_atStart)
+            Tasks.Insert(0, task);
+        else
+            Tasks.Insert(Tasks.Count, task);
+    }
+    public void CompleteTask(string _task)
+    {
+        if (CurrentTask.text == _task)
+        {
+            Tasks.RemoveAt(0);
+            foreach (string ocdTask in OCDTasks)
+            {
+                if (ocdTask == _task)
+                {
+                    CompletedOCDTasks.Add(ocdTask);
+                    break;
+                }
+            }
+            foreach (string normalTask in NormalTasks)
+            {
+                if (normalTask == _task)
+                {
+                    CompletedNormalTasks.Add(normalTask);
+                    StartCoroutine(AddDelayedOCDTask(1));
+                    break;
+                }
+            }
+            return;
+        }
+    }
+    public bool IsTaskOnTop(string _task)
+    {
+        return _task == CurrentTask.text;
+    }
+    public string[] GetCompletedOCDTasks()
+    {
+        return CompletedOCDTasks.ToArray();
+    }
+    public string[] GetCompletedNormalTasks()
+    {
+        return CompletedNormalTasks.ToArray();
+    }
+    IEnumerator AddDelayedOCDTask(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        AddOCDTask(true);
     }
 }

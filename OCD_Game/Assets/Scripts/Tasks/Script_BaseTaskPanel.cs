@@ -8,24 +8,31 @@ public class Script_BaseTaskPanel : MonoBehaviour
     #region Private
     protected Script_Player Player;
     protected Script_TaskPanel TaskList;
-    protected bool Completed;
+    protected string Name;
+    protected Script_Alarm Alarm;
+
     protected void Start()
     {
         Player = FindObjectOfType<Script_Player>();
         TaskList = FindObjectOfType<Script_TaskPanel>();
+        Alarm = FindObjectOfType<Script_Alarm>();
     }
     #endregion
 
     #region Public
+    public void SetName(string _name)
+    {
+        Name = _name;
+    }
     public void CloseTask(bool _satisfying)
     {
-        if (!Completed)
+        Player.SetInteracting(false);
+        if (_satisfying)
         {
-            Player.SetInteracting(false);
-            if (_satisfying)
-                TaskList.CompleteTask();
+            if (TaskList.IsTaskOnTop(Name))
+                Alarm.ResetVolume();
+            TaskList.CompleteTask(Name);
         }
-        Completed = true;
     }
     public void ReturnToMainMenu()
     {

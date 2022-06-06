@@ -8,17 +8,22 @@ public class Script_Door : MonoBehaviour
     GameObject Player;
     Animator DoorAnimation;
     [SerializeField] bool IsLocked = false;
+    [SerializeField] AudioClip Audio_DoorOpened;
+    [SerializeField] AudioClip Audio_DoorClosed;
+    [SerializeField] AudioSource audioSource;
 
     private void Start()
     {
         DoorAnimation = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player" && !IsLocked)
         {
-            OpenDoor();
+            audioSource.PlayOneShot(Audio_DoorOpened);
+            OpenDoor();            
         }
     }
 
@@ -26,6 +31,7 @@ public class Script_Door : MonoBehaviour
     {
         if (collision.tag == "Player" && !IsLocked)
         {
+            audioSource.PlayOneShot(Audio_DoorClosed);
             CloseDoor();
         }
     }

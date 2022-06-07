@@ -11,6 +11,7 @@ public class Script_TaskPanel : MonoBehaviour
     List<string> Tasks = new List<string>();
     List<string> CompletedOCDTasks = new List<string>();
     List<string> CompletedNormalTasks = new List<string>();
+    Script_DialoguePopup dialoguePopup;
 
     float RandomTaskTimer = 0.0f;
     [SerializeField] float RandomTaskInterval = 5.0f;
@@ -22,6 +23,7 @@ public class Script_TaskPanel : MonoBehaviour
         {
             Tasks.Add(task);
         }
+        dialoguePopup = FindObjectOfType<Script_DialoguePopup>();
     }
     private void Update()
     {
@@ -55,10 +57,17 @@ public class Script_TaskPanel : MonoBehaviour
         {
             task = OCDTasks[Random.Range(0, OCDTasks.Count)];
         }
+        
         if (_atStart)
+        {
+            dialoguePopup.DialoguePopup(3, task);
             Tasks.Insert(0, task);
+        }   
         else
+        {
+            dialoguePopup.DialoguePopup(6, "After " + Tasks[0] + ", please " + task);
             Tasks.Insert(Tasks.Count, task);
+        }
     }
     public void CompleteTask(string _task)
     {

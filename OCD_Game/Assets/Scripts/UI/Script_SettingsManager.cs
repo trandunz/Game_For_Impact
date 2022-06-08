@@ -30,6 +30,11 @@ public class Script_SettingsManager : MonoBehaviour
 
     public void UpdateSensitivty()
     {
-        MouseSensitivity = (int)SensitivitySlider.value;
+        MouseSensitivity = SensitivitySlider.value;
+        Script_FirstPersonMotor Player = FindObjectOfType<Script_FirstPersonMotor>();
+        if (Player != null)
+        {
+            Player.UpdateSensitivity();
+        }
     }
 }

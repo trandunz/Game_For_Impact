@@ -22,10 +22,10 @@ public class Script_SettingsManager : MonoBehaviour
 
     public void UpdateAudio()
     {
-        float fSliderNumber = AudioSlider.value * 10;
-        int iSliderNumber = (int)fSliderNumber;
+        float fSliderNumber = AudioSlider.value / 10;
+        int iSliderNumber = (int)AudioSlider.value;
         AudioNumber.text = iSliderNumber.ToString();
-        AudioVolume = AudioSlider.value;
+        AudioVolume = fSliderNumber;
     }
 
     public void UpdateSensitivty()

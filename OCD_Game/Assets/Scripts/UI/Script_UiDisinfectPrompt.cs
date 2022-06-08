@@ -18,10 +18,19 @@ public class Script_UiDisinfectPrompt : MonoBehaviour
     {
         FindObjectOfType<Script_Player>()?.SetInteracting(false);
         if (_satisfied)
+        {
+            promptTrigger?.ToggleInteracting(false);
+            LockDoors(5);
             Alarm?.ResetVolume();
+        }
+        else
+        {
+            promptTrigger?.ToggleInteracting(false);
+        }
     }
     public void LockDoors(float _time)
     {
+        promptTrigger?.ToggleInteracting(true);
         promptTrigger?.LockDoors(_time);
     }
 }

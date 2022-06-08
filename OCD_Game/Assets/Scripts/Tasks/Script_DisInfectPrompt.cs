@@ -9,7 +9,8 @@ public class Script_DisInfectPrompt : MonoBehaviour
     [SerializeField] Script_Door[] Doors;
     Script_Player PlayerScript;
     bool isDisinfecting = false;
-    [SerializeField]float disInfectTime = 3.0f;
+    bool isInteracting = false;
+    [SerializeField]float disInfectTime = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +32,15 @@ public class Script_DisInfectPrompt : MonoBehaviour
         foreach (Script_Door door in Doors)
         {
             StartCoroutine(door.Lock(disInfectTime));
-            
         }
+    }
+    public void ToggleInteracting(bool _interacting)
+    {
+        isInteracting = _interacting;
+    }
+    public bool IsInteracting()
+    {
+        return isInteracting; 
     }
     private void Awake()
     {
@@ -46,24 +54,23 @@ public class Script_DisInfectPrompt : MonoBehaviour
             Interact();
         }  
     }
+    public bool bDisinfecting()
+    {
+        return isDisinfecting;
+    }
     IEnumerator Disinfect()
     {
-        if (!isDisinfecting)
-        {
-            isDisinfecting = true;
-            yield return new WaitForSeconds(disInfectTime);
-            isDisinfecting = false;
-        }
-        else
-        {
-            yield return null;
-        }
+        isDisinfecting = true;
+        yield return new WaitForSeconds(disInfectTime);
+        isDisinfecting = false;
+        isInteracting = false;
     }
     #endregion
 
     #region Public
     public void Interact()
     {
+        isInteracting = true;
         Prompt.SetActive(true);
         PlayerScript.SetInteracting(true);
     }

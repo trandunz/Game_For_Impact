@@ -66,10 +66,6 @@ public class Script_DisInfectPrompt : MonoBehaviour
     {
         Prompt.SetActive(true);
         PlayerScript.SetInteracting(true);
-        foreach (Script_Door door in Doors)
-        {
-            door.CloseDoor();
-        }
     }
     #endregion
 }

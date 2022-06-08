@@ -7,6 +7,8 @@ public class Script_Door : MonoBehaviour
     GameObject Right, Left;
     GameObject Player;
     Animator DoorAnimation;
+    bool IsOpen = false;
+
     [SerializeField] bool IsLocked = false;
     [SerializeField] AudioClip Audio_DoorOpened;
     [SerializeField] AudioClip Audio_DoorClosed;
@@ -18,30 +20,31 @@ public class Script_Door : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.tag == "Player" && !IsLocked)
-        {
-            audioSource.PlayOneShot(Audio_DoorOpened);
-            OpenDoor();            
-        }
-    }
-
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.tag == "Player" && !IsLocked)
+        if (collision.tag == "Player" && !IsLocked && IsOpen)
         {
-            audioSource.PlayOneShot(Audio_DoorClosed);
             CloseDoor();
         }
     }
     public void CloseDoor()
     {
+        IsOpen = false;
         DoorAnimation.SetBool("Open", false);
+        audioSource.PlayOneShot(Audio_DoorClosed);
     }
     public void OpenDoor()
     {
+        IsOpen = true;
+        audioSource.PlayOneShot(Audio_DoorOpened);
         DoorAnimation.SetBool("Open", true);
+
+        StartCoroutine(CloseAfterOpen(3));
+    }
+
+    public bool bLocked()
+    {
+        return IsLocked;
     }
     public IEnumerator Lock(float _seconds)
     {
@@ -53,5 +56,17 @@ public class Script_Door : MonoBehaviour
         }
         else
             yield return null;
+    }
+    IEnumerator CloseAfterOpen(float _waitTime)
+    {
+        yield return new WaitForSeconds(_waitTime);
+        if (IsOpen)
+        {
+            CloseDoor();
+        }
+        else
+        {
+            yield return null;
+        }
     }
 }

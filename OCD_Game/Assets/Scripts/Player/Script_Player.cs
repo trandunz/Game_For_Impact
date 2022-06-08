@@ -29,6 +29,7 @@ public class Script_Player : MonoBehaviour
 
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out InteractHit, InteractionDistance))
         {
+            Debug.Log(InteractHit.transform.gameObject.name);
             Transform hitTransform = InteractHit.transform;
             if (hitTransform.tag == "Interactable")
             {
@@ -40,6 +41,19 @@ public class Script_Player : MonoBehaviour
                     interactableScript.Interact();
                 }
                 else if (!IsInteractingWithTask)
+                {
+                    if (InteractionText)
+                        InteractionText.ShowInteractionText();
+                }
+            }
+            if (hitTransform.tag == "KeyPad")
+            {
+                Script_Keypad keypadScript = hitTransform.GetComponent<Script_Keypad>();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    keypadScript.Interact();
+                }
+                else
                 {
                     if (InteractionText)
                         InteractionText.ShowInteractionText();

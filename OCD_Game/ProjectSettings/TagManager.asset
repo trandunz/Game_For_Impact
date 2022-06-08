@@ -7,6 +7,7 @@ TagManager:
   - Interactable
   - InteractionText
   - DisInfectPrompt
+  - KeyPad
   layers:
   - Default
   - TransparentFX

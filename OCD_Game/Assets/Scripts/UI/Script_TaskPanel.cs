@@ -65,7 +65,6 @@ public class Script_TaskPanel : MonoBehaviour
         }   
         else
         {
-            dialoguePopup.DialoguePopup(6, "After " + Tasks[0] + ", please " + task);
             Tasks.Insert(Tasks.Count, task);
         }
     }

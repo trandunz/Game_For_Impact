@@ -7,16 +7,19 @@ public class Script_ShipDestination : MonoBehaviour
 {
     Slider slider;
     [SerializeField] float TimeToDestination;
+    Script_Player player;
     // Start is called before the first frame update
     void Start()
     {
         slider = GetComponentInChildren<Slider>();
+        player = FindObjectOfType<Script_Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value += Time.deltaTime / TimeToDestination;
+        if (!player.IsInteracting())
+            slider.value += Time.deltaTime / TimeToDestination;
     }
 
     public float GetProgress()

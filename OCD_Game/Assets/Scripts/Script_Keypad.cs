@@ -9,33 +9,99 @@ public class Script_Keypad : MonoBehaviour
     [SerializeField] MeshRenderer Screen;
     Color InitialScreenColor;
     bool bCanInteract = true;
+    bool doorCoroutineIsRunning = false;
 
     private void Start()
     {
         InitialScreenColor = Screen.material.color;
     }
+    public bool IsDisinfectionInProcess()
+    {
+        if (DisinfectPromp == null)
+        {
+            return false;
+        }
+
+        return DisinfectPromp.IsInteracting();
+    }
     public void Interact()
     {
         if (bCanInteract)
         {
+            if (DisinfectPromp != null)
+            {
+                if (!DisinfectPromp.bDisinfecting())
+                {
+                    DisinfectPromp.Interact();
+                }
+            }
             if (Door != null)
             {
-                if (Door.bLocked() == false)
+                if (DisinfectPromp != null)
                 {
-                    StartCoroutine(Accepted());
-                    Door.OpenDoor();
+                    if (DisinfectPromp.bDisinfecting())
+                    {
+                        if (DisinfectPromp.bDisinfecting() == true || DisinfectPromp.IsInteracting() == true)
+                        {
+                            StartCoroutine(Decline());
+                        }
+                        else
+                        { 
+                            StartCoroutine(DisinfectRoutine());
+                        }
+                    }
+                    else
+                    {
+                        StartCoroutine(NoDisinfectionRoutine());
+                    }
                 }
                 else
                 {
-                    StartCoroutine(Decline());
+                    if (Door.bLocked() == false)
+                    {
+                        StartCoroutine(Accepted());
+                        Door.OpenDoor();
+                    }
+                    else
+                    {
+                        StartCoroutine(Decline());
+                    }
                 }
             }
-            else if (DisinfectPromp != null)
+        }
+    }
+    IEnumerator DisinfectRoutine()
+    {
+        if (DisinfectPromp != null)
+        {
+            if (!doorCoroutineIsRunning)
             {
-                DisinfectPromp.Interact();
+                doorCoroutineIsRunning = true;
+                yield return new WaitUntil(() => (DisinfectPromp.bDisinfecting() == false && DisinfectPromp.IsInteracting() == false));
                 StartCoroutine(Accepted());
+                Door.OpenDoor();
+                doorCoroutineIsRunning = false;
             }
         }
+        else
+            yield return null;
+        
+    }
+    IEnumerator NoDisinfectionRoutine()
+    {
+        if (DisinfectPromp != null)
+        {
+            if (!doorCoroutineIsRunning)
+            {
+                doorCoroutineIsRunning = true;
+                yield return new WaitUntil(() => (DisinfectPromp.IsInteracting() == false));
+                StartCoroutine(Accepted());
+                Door.OpenDoor();
+                doorCoroutineIsRunning = false;
+            }
+        }
+        else
+            yield return null;
     }
     IEnumerator Accepted()
     {

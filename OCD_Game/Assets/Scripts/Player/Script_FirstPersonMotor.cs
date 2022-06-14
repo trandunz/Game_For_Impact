@@ -64,4 +64,9 @@ public class Script_FirstPersonMotor : MonoBehaviour
         FirstPersonCamera.transform.localEulerAngles = new Vector3(yMouseRotation, xMouseRotation, 0.0f);
     }
     #endregion
+
+    public void UpdateSensitivity()
+    {
+        LookSensitivity = Script_SettingsManager.MouseSensitivity;
+    }
 }

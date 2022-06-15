@@ -11,6 +11,9 @@ public class Script_TaskInteractable : MonoBehaviour
     {
         TaskPanel = Instantiate(TaskPanel, GameObject.FindObjectOfType<Canvas>().transform);
         TaskPanel.GetComponent<Script_BaseTaskPanel>().SetName(TaskName);
+    }
+    private void Awake()
+    {
         TaskPanel.SetActive(false);
     }
     #endregion
@@ -23,6 +26,7 @@ public class Script_TaskInteractable : MonoBehaviour
     public void Interact()
     {
         TaskPanel.SetActive(true);
+        TaskPanel.GetComponent<Script_BaseTaskPanel>().OpenTask();
         Cursor.lockState = CursorLockMode.None;
     }
     #endregion

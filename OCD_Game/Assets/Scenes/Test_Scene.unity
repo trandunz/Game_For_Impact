@@ -3183,7 +3183,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 1529983712481551011, guid: 57c058040c2cb7a4b960fe933579320a,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -3693,6 +3693,11 @@ PrefabInstance:
       propertyPath: voiceClip
       value: 
       objectReference: {fileID: 8300000, guid: c896f3eeb4d78554bbed1458f3a837af, type: 3}
+    - target: {fileID: 7198584608238692731, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.50001526
+      objectReference: {fileID: 0}
     - target: {fileID: 8288419170400992615, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: m_AnchorMax.x

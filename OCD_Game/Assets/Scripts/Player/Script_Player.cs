@@ -29,12 +29,11 @@ public class Script_Player : MonoBehaviour
 
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out InteractHit, InteractionDistance))
         {
-            Debug.Log(InteractHit.transform.gameObject.name);
             Transform hitTransform = InteractHit.transform;
             if (hitTransform.tag == "Interactable")
             {
                 Script_TaskInteractable interactableScript = hitTransform.GetComponent<Script_TaskInteractable>();
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && !IsInteractingWithTask)
                 {
                     Debug.Log("Interacted!");
                     IsInteractingWithTask = true;
@@ -49,7 +48,7 @@ public class Script_Player : MonoBehaviour
             if (hitTransform.tag == "KeyPad")
             {
                 Script_Keypad keypadScript = hitTransform.GetComponent<Script_Keypad>();
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && !IsInteractingWithTask)
                 {
                     keypadScript.Interact();
                 }

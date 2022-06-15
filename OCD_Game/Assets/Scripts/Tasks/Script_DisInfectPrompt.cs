@@ -11,6 +11,11 @@ public class Script_DisInfectPrompt : MonoBehaviour
     bool isDisinfecting = false;
     bool isInteracting = false;
     [SerializeField]float disInfectTime = 5.0f;
+
+    // Audio
+    [SerializeField] AudioClip Audio_Disinfect;
+    [SerializeField] AudioSource AudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +30,15 @@ public class Script_DisInfectPrompt : MonoBehaviour
             Prompt = Instantiate(Prompt, GameObject.FindObjectOfType<Canvas>().transform);
         }
         Prompt.GetComponent<Script_UiDisinfectPrompt>().SetPromptTrigger(this);
+
+        AudioSource = GetComponent<AudioSource>();
     }
     public void LockDoors(float _seconds)
     {
         StartCoroutine(Disinfect());
         foreach (Script_Door door in Doors)
         {
+            AudioSource.PlayOneShot(Audio_Disinfect);
             StartCoroutine(door.Lock(disInfectTime));
         }
     }

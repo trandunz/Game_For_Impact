@@ -61,7 +61,7 @@ MonoBehaviour:
   Prompt: {fileID: 898334384947230829, guid: 3337e50155610044a8bc0943e5224f52, type: 3}
   Doors: []
   disInfectTime: 3
-  Audio_Disinfect: {fileID: 8300000, guid: 3577605683bb3ee4680e8d3aa1e2b4f7, type: 3}
+  Audio_Disinfect: {fileID: 8300000, guid: 64592436017a3604d95185183e6df7da, type: 3}
   AudioSource: {fileID: 7111390140453082617}
 --- !u!82 &7111390140453082617
 AudioSource:

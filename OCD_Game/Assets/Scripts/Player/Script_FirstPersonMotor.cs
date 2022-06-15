@@ -13,12 +13,15 @@ public class Script_FirstPersonMotor : MonoBehaviour
     float xMouseRotation = 0.0f;
     float yMouseRotation = 0.0f;
 
+    private Animator animator;
+
     [SerializeField] float MovementSpeed = 10.0f;
     [SerializeField] float GravityStrength = -9.81f;
     [SerializeField] float LookSensitivity = 1.0f;
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         FirstPersonCamera = GetComponentInChildren<Camera>();
         Mesh = GetComponentInChildren<MeshRenderer>().gameObject;
         CharacterController = GetComponent<CharacterController>();
@@ -35,9 +38,15 @@ public class Script_FirstPersonMotor : MonoBehaviour
             HandleFPSCamera();
             if (input.magnitude > 0)
             {
+                animator.SetBool("IsMoving", true);
                 CharacterController.Move(input * MovementSpeed * Time.deltaTime);
             }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
         }
+       
     }
     private Vector3 GetMovementInput()
     {

@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5897417873378060408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898334384947230829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbf680ce53be95489f99153e5dbe763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1099467999156068584
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,18 +153,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5897417873378060408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898334384947230829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbf680ce53be95489f99153e5dbe763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5961499365677039570
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,9 +260,9 @@ RectTransform:
   m_Father: {fileID: 898334384947230828}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.36140588, y: 0.13455766}
-  m_AnchorMax: {x: 0.5, y: 0.27523068}
-  m_AnchoredPosition: {x: 126.7, y: 0}
+  m_AnchorMin: {x: 0.50335044, y: 0.13455766}
+  m_AnchorMax: {x: 0.64223367, y: 0.27523068}
+  m_AnchoredPosition: {x: -0.30000305, y: 0}
   m_SizeDelta: {x: -0.49224854, y: 0.9104309}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1049441722921157765

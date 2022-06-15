@@ -10,12 +10,19 @@ public class Script_BaseTaskPanel : MonoBehaviour
     protected Script_TaskPanel TaskList;
     protected string Name;
     protected Script_Alarm Alarm;
+    Animator animator;
 
     protected void Start()
     {
         Player = FindObjectOfType<Script_Player>();
         TaskList = FindObjectOfType<Script_TaskPanel>();
         Alarm = FindObjectOfType<Script_Alarm>();
+        
+    }
+
+    private void Awake()
+    {
+        animator = GetComponentInParent<Animator>();
     }
     #endregion
 
@@ -24,8 +31,30 @@ public class Script_BaseTaskPanel : MonoBehaviour
     {
         Name = _name;
     }
+    public void OpenTask()
+    {
+        if (animator)
+        {
+            while (animator.GetBool("Open") == false)
+            {
+                animator.SetBool("Open", true);
+            }
+        }
+    }
     public void CloseTask(bool _satisfying)
     {
+        if (animator)
+        {
+            while (animator.GetBool("Open") == true)
+            {
+                animator.SetBool("Open", false);
+            }
+        }
+        StartCoroutine(closeRoutine(_satisfying));
+    }
+    IEnumerator closeRoutine(bool _satisfying)
+    {
+        yield return new WaitForSeconds(3.0f);
         Player.SetInteracting(false);
         if (_satisfying)
         {
@@ -33,10 +62,17 @@ public class Script_BaseTaskPanel : MonoBehaviour
                 Alarm.ResetVolume();
             TaskList.CompleteTask(Name);
         }
+        gameObject.SetActive(false);
     }
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);
     }
+
+    bool AnimatorIsPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;
+    }
+
     #endregion
 }

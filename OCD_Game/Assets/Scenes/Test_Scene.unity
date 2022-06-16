@@ -3648,6 +3648,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4720701162685137572, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: voiceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c896f3eeb4d78554bbed1458f3a837af, type: 3}
     - target: {fileID: 5124714705531959125, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -7,7 +7,8 @@ public class Script_SettingsManager : MonoBehaviour
 {
     public static float AudioVolume;
     public static float MouseSensitivity;
-    public static Vector2 ScreenSize;
+
+    [SerializeField] float PanStereo;
 
     [SerializeField] Slider AudioSlider;
     [SerializeField] Text AudioNumber;
@@ -19,7 +20,20 @@ public class Script_SettingsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // load from settings file
+        LoadPrefs();
+        AudioSlider.value = AudioVolume * 10;
+        int i = (int)AudioSlider.value;
+        AudioNumber.text = i.ToString();
+
+        StereoPanSlider.value = (PanStereo + 0.5f) * 10;
+        UpdatePan();
+
+        SensitivitySlider.value = MouseSensitivity;
+        Script_FirstPersonMotor Player = FindObjectOfType<Script_FirstPersonMotor>();
+        if (Player != null)
+        {
+            Player.UpdateSensitivity();
+        }
     }
 
     public void UpdateAudio()
@@ -29,17 +43,18 @@ public class Script_SettingsManager : MonoBehaviour
         AudioNumber.text = iSliderNumber.ToString();
         AudioVolume = fSliderNumber;
         AudioListener.volume = AudioVolume;
+        SavePrefs();
     }
 
     public void UpdatePan()
     {
-        float sliderNumber = (StereoPanSlider.value - 5) / 10;
-        
+        PanStereo = (StereoPanSlider.value - 5) / 10;
 
         foreach (AudioSource source in FindObjectsOfType<AudioSource>())
         {
-            source.panStereo = sliderNumber;
+            source.panStereo = PanStereo;
         }
+        SavePrefs();
     }
 
     public void UpdateSensitivty()
@@ -47,12 +62,28 @@ public class Script_SettingsManager : MonoBehaviour
         MouseSensitivity = SensitivitySlider.value;
         if (MouseSensitivity <= 0)
         {
-            MouseSensitivity = 1;
+            MouseSensitivity = 0.1f;
         }
         Script_FirstPersonMotor Player = FindObjectOfType<Script_FirstPersonMotor>();
         if (Player != null)
         {
             Player.UpdateSensitivity();
         }
+        SavePrefs();
+    }
+
+    void SavePrefs()
+    {
+        PlayerPrefs.SetFloat("Volume", AudioVolume);
+        PlayerPrefs.SetFloat("Sensitivity", MouseSensitivity);
+        PlayerPrefs.SetFloat("PanStereo", PanStereo);
+        PlayerPrefs.Save();
+    }
+
+    void LoadPrefs()
+    {
+        AudioVolume = PlayerPrefs.GetFloat("Volume", 0.5f);
+        MouseSensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
+        PanStereo = PlayerPrefs.GetFloat("PanStereo", 5.0f);
     }
 }

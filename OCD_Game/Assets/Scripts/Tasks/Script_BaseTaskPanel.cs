@@ -35,26 +35,20 @@ public class Script_BaseTaskPanel : MonoBehaviour
     {
         if (animator)
         {
-            while (animator.GetBool("Open") == false)
-            {
-                animator.SetBool("Open", true);
-            }
+            animator.SetBool("Open", true);
         }
     }
     public void CloseTask(bool _satisfying)
     {
         if (animator)
         {
-            while (animator.GetBool("Open") == true)
-            {
-                animator.SetBool("Open", false);
-            }
+            animator.SetBool("Open", false);
         }
         StartCoroutine(closeRoutine(_satisfying));
     }
     IEnumerator closeRoutine(bool _satisfying)
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitUntil(() => !AnimatorIsPlaying() && animator.GetCurrentAnimatorStateInfo(0).IsName("TaskPanel_Close"));
         Player.SetInteracting(false);
         if (_satisfying)
         {
@@ -62,6 +56,11 @@ public class Script_BaseTaskPanel : MonoBehaviour
                 Alarm.ResetVolume();
             TaskList.CompleteTask(Name);
         }
+        animator.CrossFade("New State", 0f);
+
+        animator.Update(0f);
+
+        animator.Update(0f);
         gameObject.SetActive(false);
     }
     public void ReturnToMainMenu()

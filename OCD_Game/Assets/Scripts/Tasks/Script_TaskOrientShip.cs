@@ -9,24 +9,47 @@ public class Script_TaskOrientShip : MonoBehaviour
     [SerializeField] Image destination;
     [SerializeField] Image SliderHandle;
     Vector3 ShipStartPos;
+    bool doOnce = false;
+    bool canSteer = true;
+    float sliderValue = 0.5f;
 
-    private void Start()
-    {
-        
-        ShipStartPos = ship.transform.position;
-    }
     private void OnEnable()
     {
-        destination.transform.position = new Vector3(destination.transform.position.x + Random.Range(-100, 100), destination.transform.position.y, destination.transform.position.z);
+        if (!doOnce)
+        {
+            SliderHandle.GetComponentInParent<Slider>().onValueChanged.AddListener(SliderValueChanged);
+            doOnce = true;
+            ShipStartPos = ship.rectTransform.position;
+        }
+        destination.rectTransform.position = new Vector3(ShipStartPos.x + Random.Range(-300, 300), destination.rectTransform.position.y, destination.rectTransform.position.z);
+        canSteer = true;
     }
     // Update is called once per frame
+
     void Update()
     {
-        ship.transform.position = new Vector3(SliderHandle.transform.position.x, ship.transform.position.y, ship.transform.position.z);
-        if (ship.transform.position.x <= destination.transform.position.x + 10
-            && ship.transform.position.x >= destination.transform.position.x - 10)
+        if (canSteer == false)
         {
-            GetComponent<Script_BaseTaskPanel>().CloseTask(true);
+            Slider slider = SliderHandle.GetComponentInParent<Slider>();
+            if (slider)
+            {
+                slider.value = sliderValue;
+            }
+        }
+    }
+
+    public void SliderValueChanged(float _value)
+    {
+        if (canSteer)
+        {
+            sliderValue = _value;
+            ship.rectTransform.position = new Vector3(SliderHandle.rectTransform.position.x, ship.rectTransform.position.y, ship.rectTransform.position.z);
+            if (ship.rectTransform.position.x <= destination.rectTransform.position.x + 10
+                && ship.rectTransform.position.x >= destination.rectTransform.position.x - 10)
+            {
+                canSteer = false;
+                GetComponent<Script_BaseTaskPanel>().CloseTask(true);
+            }
         }
     }
 }

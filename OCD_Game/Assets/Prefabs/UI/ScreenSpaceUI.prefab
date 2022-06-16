@@ -1133,6 +1133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialoguePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 914459579670287028, guid: 51b8b69016fa6a145b9f0deddda94bab,
+        type: 3}
+      propertyPath: voiceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c896f3eeb4d78554bbed1458f3a837af, type: 3}
     - target: {fileID: 2871258806494434584, guid: 51b8b69016fa6a145b9f0deddda94bab,
         type: 3}
       propertyPath: m_Pivot.x

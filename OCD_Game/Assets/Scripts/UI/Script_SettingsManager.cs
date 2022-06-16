@@ -25,7 +25,7 @@ public class Script_SettingsManager : MonoBehaviour
         int i = (int)AudioSlider.value;
         AudioNumber.text = i.ToString();
 
-        StereoPanSlider.value = (PanStereo + 0.5f) * 10;
+        StereoPanSlider.value = PanStereo;
         UpdatePan();
 
         SensitivitySlider.value = MouseSensitivity;
@@ -48,11 +48,11 @@ public class Script_SettingsManager : MonoBehaviour
 
     public void UpdatePan()
     {
-        PanStereo = (StereoPanSlider.value - 5) / 10;
-
+        float fSliderValue = (StereoPanSlider.value - 5) / 10;
+        PanStereo = StereoPanSlider.value;
         foreach (AudioSource source in FindObjectsOfType<AudioSource>())
         {
-            source.panStereo = PanStereo;
+            source.panStereo = fSliderValue;
         }
         SavePrefs();
     }

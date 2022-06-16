@@ -32,21 +32,23 @@ public class Script_FirstPersonMotor : MonoBehaviour
     private void Update()
     {
         ApplyGravity();
+        Vector3 input = Vector3.zero;
         if (!PlayerScript.IsInteracting())
         {
-            Vector3 input = Quaternion.Euler(0.0f, xMouseRotation, 0.0f) * GetMovementInput();
+            input = Quaternion.Euler(0.0f, xMouseRotation, 0.0f) * GetMovementInput();
             HandleFPSCamera();
-            if (input.magnitude > 0)
-            {
-                animator.SetBool("IsMoving", true);
-                CharacterController.Move(input * MovementSpeed * Time.deltaTime);
-            }
-            else
-            {
-                animator.SetBool("IsMoving", false);
-            }
+            
         }
-       
+        if (input.magnitude > 0)
+        {
+            animator.SetBool("IsMoving", true);
+            CharacterController.Move(input * MovementSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
     }
     private Vector3 GetMovementInput()
     {

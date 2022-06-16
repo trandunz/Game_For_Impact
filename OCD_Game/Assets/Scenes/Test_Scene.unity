@@ -1348,7 +1348,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -1512,7 +1512,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -2075,7 +2075,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -2378,7 +2378,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -2871,7 +2871,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -3263,7 +3263,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 518763324963618493, guid: ce0781911f9690e42ad3855ad850be28,
+      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -3678,6 +3678,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6099785365659409866, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000019073486
+      objectReference: {fileID: 0}
     - target: {fileID: 6536636536865276211, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3688,6 +3693,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6937053669063460696, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 45458cd59836ede438bcea4cd8afc620,
+        type: 3}
     - target: {fileID: 7138368023572523874, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: voiceClip

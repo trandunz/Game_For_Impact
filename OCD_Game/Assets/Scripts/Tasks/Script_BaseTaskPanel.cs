@@ -17,7 +17,6 @@ public class Script_BaseTaskPanel : MonoBehaviour
         Player = FindObjectOfType<Script_Player>();
         TaskList = FindObjectOfType<Script_TaskPanel>();
         Alarm = FindObjectOfType<Script_Alarm>();
-        
     }
 
     private void Awake()

@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OCD Tasks Completed
+  m_Text: Other Tasks Completed
 --- !u!1 &1304391644800148315
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13814256, y: 0.7251153}
   m_AnchorMax: {x: 0.43300003, y: 0.7687882}
-  m_AnchoredPosition: {x: -0.49412537, y: -109.6}
+  m_AnchoredPosition: {x: -0.49414062, y: -109.6}
   m_SizeDelta: {x: 0.9883423, y: 161.08784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2920255082919554432

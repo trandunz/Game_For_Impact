@@ -96,7 +96,7 @@ MonoBehaviour:
   - Replace Oxygen Tank
   - Change Fuel Tank
   OCDTasks:
-  - Water Plant
+  - Check AC Temp
   - Storage Room Left To Right
   - Set Dials Even
   RandomTaskInterval: 20

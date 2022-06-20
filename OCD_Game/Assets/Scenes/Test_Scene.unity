@@ -2968,9 +2968,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6831667117751478083, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
+      propertyPath: TaskName
+      value: Organize Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831667117751478083, guid: 4faa111a2bff2bf4185b6a84fd409430,
+        type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
+      objectReference: {fileID: 8781436839414178517, guid: e6d77733b8f724b48a0149a5241a1cf7,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Script_Dial : MonoBehaviour
 {
     [SerializeField] Text DialValue;
-    [SerializeField] Text DesiredValueText;
     int desiredValue = 0;
     int value = 0;
     void OnEnable()
@@ -21,17 +20,16 @@ public class Script_Dial : MonoBehaviour
     public void SetDesiredValue(int _value)
     {
         desiredValue = _value;
-        DesiredValueText.text = desiredValue.ToString();
     }
     private void Update()
     {
         if (desiredValue == value)
         {
-            DesiredValueText.color = Color.green;
+            GetComponent<Image>().color = Color.green;
         }
         else
         {
-            DesiredValueText.color = Color.red;
+            GetComponent<Image>().color = Color.red;
         }
     }
     public bool ReachedDesiredValue()

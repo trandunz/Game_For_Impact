@@ -2174,7 +2174,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
+      objectReference: {fileID: 608530582432895302, guid: 6172b8f09b7d7d34fb8962ba80248d36,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}
@@ -3721,6 +3721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266156637838558854, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3683651173903775422, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}

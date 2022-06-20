@@ -5,41 +5,56 @@ using UnityEngine.UI;
 
 public class Script_EngineDials : MonoBehaviour
 {
-    [SerializeField] Button VoltageDial;
-    [SerializeField] Button TankDial;
-    [SerializeField] Button CoolingDial;
-    bool voltageClicked = false;
-    bool TankNobClicked = false;
-    bool CoolingFanClicked = false;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Script_Dial VoltageDial;
+    [SerializeField] Script_Dial TankDial;
+    [SerializeField] Script_Dial CoolingDial;
+
+    float angle = 0.0f;
+    bool canChangeDials = true;
+
+
+    private void Start()
     {
-        VoltageDial.onClick.AddListener(() => voltageClicked = true);
-        TankDial.onClick.AddListener(() => TankNobClicked = true);
-        CoolingDial.onClick.AddListener(() => CoolingFanClicked = true);
+        VoltageDial.SetDialValue(angle);
+        TankDial.SetDialValue(angle);
+        CoolingDial.SetDialValue(angle);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
+    { 
+        canChangeDials = true;
+    }
+
+    private void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        if (VoltageDial.ReachedDesiredValue() &&
+            TankDial.ReachedDesiredValue() &&
+            CoolingDial.ReachedDesiredValue() && canChangeDials)
         {
-            voltageClicked = false;
-            TankNobClicked = false;
-            CoolingFanClicked = false;
+            StartCoroutine(TurnedAllDialsRoutine());
+            
         }
+    }
 
-        if (voltageClicked)
+    public void onHandleDrag(Image _dialDragged)
+    {
+        if (canChangeDials)
         {
-
+            Vector3 mousepos = Input.mousePosition;
+            Vector2 direction = (mousepos - _dialDragged.transform.position);
+            angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            angle = angle <= 0 ? 360 + angle : angle;
+            angle = Mathf.Round(angle);
+            _dialDragged.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
+            _dialDragged.GetComponentInParent<Script_Dial>().SetDialValue(angle);
         }
-        if (TankNobClicked)
-        {
+        
+    }
 
-        }
-        if (CoolingFanClicked)
-        {
-
-        }
+    IEnumerator TurnedAllDialsRoutine()
+    {
+        canChangeDials = false;
+        yield return new WaitForSeconds(2);
+        GetComponent<Script_BaseTaskPanel>().CloseTask(true);
     }
 }

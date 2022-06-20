@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Script_TaskScanForDebris : MonoBehaviour
 {
     [SerializeField] GameObject radarHandle;
+    [SerializeField] Text scanText;
     bool isScanning = false;
     Quaternion radarStartRotation;
     RectTransform rectTransform;
@@ -14,11 +15,16 @@ public class Script_TaskScanForDebris : MonoBehaviour
     {
         rectTransform = radarHandle.GetComponent<RectTransform>();
         radarStartRotation = rectTransform.rotation;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isScanning)
+        {
+            scanText.text = "COMMENCE SCAN";
+        }
         if (isScanning && rectTransform.rotation != radarStartRotation)
         {
             rectTransform.RotateAround(rectTransform.position, Vector3.back, 180 * Time.deltaTime);
@@ -29,6 +35,7 @@ public class Script_TaskScanForDebris : MonoBehaviour
     {
         if (!isScanning)
         {
+            scanText.text = "COMMENCE SCAN \nSCANNING...";
             StartCoroutine(ScanRoutine());
         }
     }
@@ -37,6 +44,15 @@ public class Script_TaskScanForDebris : MonoBehaviour
         rectTransform.RotateAround(rectTransform.position, Vector3.back, 180 * Time.deltaTime);
         isScanning = true;
         yield return new WaitUntil(() => rectTransform.rotation == radarStartRotation);
+
+        StartCoroutine(FinishScanRoutine());
+    }
+    IEnumerator FinishScanRoutine()
+    {
+        scanText.text = "COMMENCE SCAN\nSCANNING...\nNO DEBRIS FOUND";
+        yield return new WaitForSeconds(1.0f);
+        scanText.text = "COMMENCE SCAN\nSCANNING...\nNO DEBRIS FOUND\nSCAN COMPLETE";
+        yield return new WaitForSeconds(1.0f);
         isScanning = false;
         GetComponent<Script_BaseTaskPanel>().CloseTask(true);
     }

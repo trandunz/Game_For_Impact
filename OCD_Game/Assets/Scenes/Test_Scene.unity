@@ -2477,7 +2477,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TaskPanel
       value: 
-      objectReference: {fileID: 2197536645145275558, guid: a060322f9edba324692fd3f85317af86,
+      objectReference: {fileID: 7691921721589651781, guid: a5573b58210f57c45adae3df43fbfe9a,
         type: 3}
     - target: {fileID: 7614271439581289382, guid: 4faa111a2bff2bf4185b6a84fd409430,
         type: 3}

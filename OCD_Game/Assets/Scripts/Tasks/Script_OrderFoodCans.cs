@@ -16,6 +16,11 @@ public class Script_OrderFoodCans : MonoBehaviour
         if (dropzone == null)
             dropzone = GetComponentInChildren<Script_CanDraggable>().transform.parent;
 
+        foreach (var can in dropzone.GetComponentsInChildren<Script_CanDraggable>())
+        {
+            can.CanDrag = true;
+        }
+
         for (int i = 0; i < dropzone.childCount; i++)
         {
             dropzone.GetChild(i).SetSiblingIndex(Random.Range(0, dropzone.childCount));
@@ -31,9 +36,10 @@ public class Script_OrderFoodCans : MonoBehaviour
             {
                 if(dropzone.GetChild(i).GetComponent<Image>() == null)
                 {
-                    continue;
+                    Inorder = false;
+                    break;
                 }
-                if (dropzone.GetChild(i).GetComponent<Image>().rectTransform.rect.height > previousHeight)
+                else if (dropzone.GetChild(i).GetComponent<Image>().rectTransform.rect.height > previousHeight)
                 {
                     previousHeight = dropzone.GetChild(i).GetComponent<Image>().rectTransform.rect.height;
                     Inorder = true;
@@ -47,6 +53,10 @@ public class Script_OrderFoodCans : MonoBehaviour
 
             if (Inorder == true)
             {
+                foreach(var can in dropzone.GetComponentsInChildren<Script_CanDraggable>())
+                {
+                    can.CanDrag = false;
+                }
                 StartCoroutine(CloseRoutine());
             }
         }

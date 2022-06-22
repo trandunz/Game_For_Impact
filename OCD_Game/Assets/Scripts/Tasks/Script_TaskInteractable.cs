@@ -9,7 +9,7 @@ public class Script_TaskInteractable : MonoBehaviour
     [SerializeField] string TaskName;
     private void Start()
     {
-        TaskPanel = Instantiate(TaskPanel, GameObject.FindObjectOfType<Canvas>().transform);
+        TaskPanel = Instantiate(TaskPanel, GameObject.FindWithTag("MainCanvas").transform);
         TaskPanel.GetComponent<Script_BaseTaskPanel>().SetName(TaskName);
     }
     private void Awake()

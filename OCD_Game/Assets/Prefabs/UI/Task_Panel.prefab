@@ -93,12 +93,13 @@ MonoBehaviour:
   OtherTasks: {fileID: 2258477292303924692}
   NormalTasks:
   - Orient Ship
-  - Replace Oxygen Tank
-  - Change Fuel Tank
+  - Refill Oxygen
+  - Refill Fuel
   OCDTasks:
   - Check AC Temp
-  - Storage Room Left To Right
-  - Set Dials Even
+  - Organize Food
+  - Config Thrust
+  - Scan Debris
   RandomTaskInterval: 20
 --- !u!1 &3126466124646586584
 GameObject:

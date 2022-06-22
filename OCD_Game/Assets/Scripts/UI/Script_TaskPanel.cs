@@ -86,7 +86,7 @@ public class Script_TaskPanel : MonoBehaviour
                 if (normalTask == _task)
                 {
                     CompletedNormalTasks.Add(normalTask);
-                    StartCoroutine(AddDelayedOCDTask(1));
+                    StartCoroutine(AddDelayedOCDTask(2.0f));
                     break;
                 }
             }

@@ -37,7 +37,7 @@ public class Script_DialoguePopup : MonoBehaviour
         {
             if (_ocd)
             {
-                basePanelImage.sprite = MCIntercom;
+                basePanelImage.sprite = OCDIntercom;
             }
             else
             {

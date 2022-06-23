@@ -11,6 +11,8 @@ public class Script_Player : MonoBehaviour
     Script_InteractionText InteractionText;
     Script_TaskPanel TaskList;
 
+    public string PlayerLocation = "Common Space";
+
     [SerializeField] float InteractionDistance = 3.0f;
     private void Start()
     {

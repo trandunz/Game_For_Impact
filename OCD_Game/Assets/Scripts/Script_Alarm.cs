@@ -5,6 +5,8 @@ using UnityEngine;
 public class Script_Alarm : MonoBehaviour
 {
     AudioSource audioSource;
+    [SerializeField] AudioSource TaskCompleteAudioSource;
+    [SerializeField] AudioClip taskComplete;
     [SerializeField] float volumeIncreasePerSecond;
 
     private void Start()
@@ -24,5 +26,6 @@ public class Script_Alarm : MonoBehaviour
     public void ResetVolume()
     {
         audioSource.volume = 0;
+        TaskCompleteAudioSource.PlayOneShot(taskComplete);
     }
 }

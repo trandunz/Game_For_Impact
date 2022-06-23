@@ -92,6 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 7020283659857792240}
   voiceClip: {fileID: 8300000, guid: 9c3e89f6ef858c24d9ee109bf5eb0e86, type: 3}
+  OCDIntercom: {fileID: 21300000, guid: 4b78dec0604ebea4d93638aae7bb1a9a, type: 3}
+  MCIntercom: {fileID: 21300000, guid: f4d229ed54f604643b243e03c2ccb437, type: 3}
 --- !u!82 &5270652404170264134
 AudioSource:
   m_ObjectHideFlags: 0
@@ -275,7 +277,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 45458cd59836ede438bcea4cd8afc620, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0

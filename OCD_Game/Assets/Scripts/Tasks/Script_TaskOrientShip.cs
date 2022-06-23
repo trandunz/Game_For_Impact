@@ -21,7 +21,7 @@ public class Script_TaskOrientShip : MonoBehaviour
             doOnce = true;
             ShipStartPos = ship.rectTransform.position;
         }
-        destination.rectTransform.position = new Vector3(ShipStartPos.x + Random.Range(-300, 300), destination.rectTransform.position.y, destination.rectTransform.position.z);
+        destination.rectTransform.position = new Vector3(ShipStartPos.x + Random.Range(-250, 250), destination.rectTransform.position.y, destination.rectTransform.position.z);
         canSteer = true;
     }
     // Update is called once per frame

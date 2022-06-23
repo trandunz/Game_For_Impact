@@ -10,6 +10,7 @@ public class Script_BaseTaskPanel : MonoBehaviour
     protected Script_TaskPanel TaskList;
     protected string Name;
     protected Script_Alarm Alarm;
+    Script_OpeningEyes FadingScreenUI;
     Animator animator;
 
     protected void Start()
@@ -17,6 +18,7 @@ public class Script_BaseTaskPanel : MonoBehaviour
         Player = FindObjectOfType<Script_Player>();
         TaskList = FindObjectOfType<Script_TaskPanel>();
         Alarm = FindObjectOfType<Script_Alarm>();
+        FadingScreenUI = FindObjectOfType<Script_OpeningEyes>();
     }
 
     private void Awake()
@@ -64,7 +66,17 @@ public class Script_BaseTaskPanel : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(ReturnToMainMenuRoutine());
+    }
+
+    IEnumerator ReturnToMainMenuRoutine()
+    {
+        if (FadingScreenUI.IsScreenFading() == false)
+        {
+            FadingScreenUI.CloseEyes();
+            yield return new WaitUntil(() => FadingScreenUI.IsScreenFading() == false);
+            SceneManager.LoadScene(0);
+        }
     }
 
     bool AnimatorIsPlaying()

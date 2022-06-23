@@ -10,7 +10,7 @@ public class Script_Dial : MonoBehaviour
     int value = 0;
     void OnEnable()
     {
-        SetDesiredValue(Random.Range(0, 360));
+        SetDesiredValue(Random.Range(0, 11));
     }
     public void SetDialValue(float _value)
     {

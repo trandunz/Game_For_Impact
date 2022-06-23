@@ -10,7 +10,7 @@ public class Script_RefillFuel : MonoBehaviour
     bool IsRefilling = false;
     private void OnEnable()
     {
-        FuelMeter.fillAmount = Random.Range(0, 0.5f);
+        FuelMeter.fillAmount = Random.Range(0.2f, 0.6f);
         canRefil = true;
         IsRefilling = false;
     }

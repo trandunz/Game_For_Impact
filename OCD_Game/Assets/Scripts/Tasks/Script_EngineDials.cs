@@ -43,10 +43,16 @@ public class Script_EngineDials : MonoBehaviour
             Vector3 mousepos = Input.mousePosition;
             Vector2 direction = (mousepos - _dialDragged.transform.position);
             angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-            angle = angle <= 0 ? 360 + angle : angle;
             angle = Mathf.Round(angle);
+            angle = angle < 0 ? 360 + angle : angle;
+            angle = RoundToNearestMultiple(angle, 30);
+            if (angle / 30 == 12)
+            {
+                angle = 0;
+            }
             _dialDragged.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
-            _dialDragged.GetComponentInParent<Script_Dial>().SetDialValue(angle);
+            _dialDragged.GetComponentInParent<Script_Dial>().SetDialValue(angle / 30);
+
         }
         
     }
@@ -56,5 +62,14 @@ public class Script_EngineDials : MonoBehaviour
         canChangeDials = false;
         yield return new WaitForSeconds(2);
         GetComponent<Script_BaseTaskPanel>().CloseTask(true);
+    }
+
+    float RoundToNearestMultiple(float _value, float multiple)
+    {
+        float rem = _value % multiple;
+        float result = _value - rem;
+        if (rem >= (multiple / 2))
+            result += multiple;
+        return result;
     }
 }

@@ -34,7 +34,7 @@ public class Script_TaskScanForDebris : MonoBehaviour
 
     public void Scan()
     {
-        if (!isScanning)
+        if (scanText.text == "COMMENCE SCAN")
         {
             scanText.text = "COMMENCE SCAN \nSCANNING...";
             StartCoroutine(ScanRoutine());
@@ -57,5 +57,6 @@ public class Script_TaskScanForDebris : MonoBehaviour
         scanText.text = "COMMENCE SCAN\nSCANNING...\nNO DEBRIS FOUND\nSCAN COMPLETE";
         yield return new WaitForSeconds(1.0f);
         GetComponent<Script_BaseTaskPanel>().CloseTask(true);
+        
     }
 }

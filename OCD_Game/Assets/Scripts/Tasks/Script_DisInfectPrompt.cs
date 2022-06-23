@@ -69,7 +69,9 @@ public class Script_DisInfectPrompt : MonoBehaviour
     IEnumerator Disinfect()
     {
         isDisinfecting = true;
+        GetComponentInChildren<ParticleSystem>().Play();
         yield return new WaitForSeconds(disInfectTime);
+        GetComponentInChildren<ParticleSystem>().Stop();
         isDisinfecting = false;
         isInteracting = false;
     }

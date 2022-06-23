@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb195da87106cac4ca80c572c63023b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDestination: 120
+  TimeToDestination: 160
 --- !u!1 &4124202024285516990
 GameObject:
   m_ObjectHideFlags: 0

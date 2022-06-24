@@ -1,25 +1,30 @@
-﻿using System.Collections;
+﻿// Description: Updates the stored settings based on the sliders, as well as loading the stored settings
+//
+// made by: Josh
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Script_SettingsManager : MonoBehaviour
 {
+    // static used to have access everywhere
     public static float AudioVolume;
     public static float MouseSensitivity;
 
     [SerializeField] float PanStereo;
-
+    
+    // UI info
     [SerializeField] Slider AudioSlider;
     [SerializeField] Text AudioNumber;
-
     [SerializeField] Slider SensitivitySlider;
-
     [SerializeField] Slider StereoPanSlider;
 
     // Start is called before the first frame update
     void Start()
     {
+        // load the settings, update the sliders, set the values
         LoadPrefs();
         AudioSlider.value = AudioVolume * 10;
         int i = (int)AudioSlider.value;
@@ -37,6 +42,9 @@ public class Script_SettingsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// updates the global Audio to have the static volume
+    /// </summary>
     public void UpdateAudio()
     {
         float fSliderNumber = AudioSlider.value / 10;
@@ -47,6 +55,9 @@ public class Script_SettingsManager : MonoBehaviour
         SavePrefs();
     }
 
+    /// <summary>
+    /// updates the global pan to follow the stored pan value
+    /// </summary>
     public void UpdatePan()
     {
         float fSliderValue = (StereoPanSlider.value - 5) / 10;
@@ -58,6 +69,9 @@ public class Script_SettingsManager : MonoBehaviour
         SavePrefs();
     }
 
+    /// <summary>
+    /// updates the player character to follow the stored sensitivity
+    /// </summary>
     public void UpdateSensitivty()
     {
         MouseSensitivity = SensitivitySlider.value;
@@ -73,6 +87,9 @@ public class Script_SettingsManager : MonoBehaviour
         SavePrefs();
     }
 
+    /// <summary>
+    /// saves the current info, called when a slider is changed
+    /// </summary>
     void SavePrefs()
     {
         PlayerPrefs.SetFloat("Volume", AudioVolume);
@@ -81,6 +98,9 @@ public class Script_SettingsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    /// <summary>
+    /// loads the current info
+    /// </summary>
     void LoadPrefs()
     {
         AudioVolume = PlayerPrefs.GetFloat("Volume", 1.0f);

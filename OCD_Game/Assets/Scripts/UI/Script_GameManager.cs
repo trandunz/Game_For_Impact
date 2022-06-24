@@ -8,6 +8,8 @@ public class Script_GameManager : MonoBehaviour
     Script_Player player;
     [SerializeField] GameObject lossPanel;
     Script_ShipDestination shipDestination;
+    Script_TaskPanel TaskPanel;
+    Script_DisinfectRoomManager DisinfectRoomManager;
 
     private void Start()
     {
@@ -15,6 +17,8 @@ public class Script_GameManager : MonoBehaviour
         shipDestination = FindObjectOfType<Script_ShipDestination>();
         lossPanel = Instantiate(lossPanel, FindObjectOfType<Canvas>().transform);
         lossPanel.SetActive(false);
+        TaskPanel = FindObjectOfType<Script_TaskPanel>();
+        DisinfectRoomManager = FindObjectOfType<Script_DisinfectRoomManager>();
     }
 
     private void Update()
@@ -23,6 +27,8 @@ public class Script_GameManager : MonoBehaviour
         {
             lossPanel.SetActive(true);
             player.SetInteracting(true);
+            TaskPanel.StopAlarms();
+            DisinfectRoomManager.StopAllWarnings();
         }
     }
 

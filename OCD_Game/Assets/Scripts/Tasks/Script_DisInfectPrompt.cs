@@ -8,7 +8,7 @@ public class Script_DisInfectPrompt : MonoBehaviour
     [SerializeField] GameObject Prompt;
     [SerializeField] Script_Door[] Doors;
     Script_Player PlayerScript;
-    bool isDisinfecting = false;
+    public bool isDisinfecting = false;
     bool isInteracting = false;
     [SerializeField]float disInfectTime = 5.0f;
 

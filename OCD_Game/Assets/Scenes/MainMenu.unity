@@ -897,17 +897,16 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Warning:
 
-    
 
-    This game contains flashing lights, loud noises,
-    and bassy ambient noise. If you have suffered any issues because of these in
-    the past, please be cautious while playing this game.
 
-    
+    This game contains flashing lights, loud noises, and bassy
+    ambient noise. If you have suffered any issues because of these in the past,
+    please be cautious while playing this game.
 
-    This game
-    also includes references to OCD, if you suffer from OCD it is advised that you
-    do not play this game.
+
+
+    This game also includes references
+    to OCD, if you suffer from OCD it is advised that you do not play this game.
 
 '
 --- !u!222 &546292209

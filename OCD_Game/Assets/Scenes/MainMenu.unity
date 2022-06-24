@@ -675,6 +675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479234571596655489, guid: 33f216d9d9349d04582f92491f426721,
         type: 3}
+      propertyPath: m_MinValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479234571596655489, guid: 33f216d9d9349d04582f92491f426721,
+        type: 3}
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}

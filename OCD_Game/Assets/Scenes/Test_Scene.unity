@@ -7810,6 +7810,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3683651174237020980, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3683651174237020981, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: m_Pivot.x

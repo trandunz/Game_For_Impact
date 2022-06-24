@@ -43,6 +43,10 @@ public class Script_TaskPanel : MonoBehaviour
         {
             case "Check AC Temp":
                 {
+                    if (InternalVoice.clip != InteralVoiceClips[0])
+                    {
+                        InternalVoice.Stop();
+                    }
                     if (!InternalVoice.isPlaying)
                     {
                         InternalVoice.clip = InteralVoiceClips[0];
@@ -52,6 +56,10 @@ public class Script_TaskPanel : MonoBehaviour
                 }
             case "Organize Food":
                 {
+                    if (InternalVoice.clip != InteralVoiceClips[1])
+                    {
+                        InternalVoice.Stop();
+                    }
                     if (!InternalVoice.isPlaying)
                     {
                         InternalVoice.clip = InteralVoiceClips[1];
@@ -61,6 +69,10 @@ public class Script_TaskPanel : MonoBehaviour
                 }
             case "Config Thrust":
                 {
+                    if (InternalVoice.clip != InteralVoiceClips[2])
+                    {
+                        InternalVoice.Stop();
+                    }
                     if (!InternalVoice.isPlaying)
                     {
                         InternalVoice.clip = InteralVoiceClips[2];
@@ -71,6 +83,10 @@ public class Script_TaskPanel : MonoBehaviour
                 }
             case "Scan Debris":
                 {
+                    if (InternalVoice.clip != InteralVoiceClips[3])
+                    {
+                        InternalVoice.Stop();
+                    }
                     if (!InternalVoice.isPlaying)
                     {
                         InternalVoice.clip = InteralVoiceClips[3];

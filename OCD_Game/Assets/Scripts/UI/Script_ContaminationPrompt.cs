@@ -6,11 +6,10 @@ public class Script_ContaminationPrompt : MonoBehaviour
 {
     [SerializeField] AudioSource Audio;
     bool IsWarningPlaying = false;
-    Script_Rotate RedLight;
 
     private void Start()
     {
-        RedLight = FindObjectOfType<Script_Rotate>();
+        Audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -18,7 +17,6 @@ public class Script_ContaminationPrompt : MonoBehaviour
     {
        if(GetComponentInParent<Script_DisInfectPrompt>().isDisinfecting == true)
         {
-            RedLight.DisableLight();
             Audio.Stop();
             IsWarningPlaying = false;
             GetComponentInParent<Script_DisinfectRoomManager>().StopAllWarnings();
@@ -29,7 +27,6 @@ public class Script_ContaminationPrompt : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            RedLight.EnableLight();
             Audio.Play();
             IsWarningPlaying = true;
         }
@@ -39,7 +36,6 @@ public class Script_ContaminationPrompt : MonoBehaviour
     {
         if (Audio.isPlaying)
         {
-            RedLight.DisableLight();
             Audio.Stop();
             IsWarningPlaying = false;
         }

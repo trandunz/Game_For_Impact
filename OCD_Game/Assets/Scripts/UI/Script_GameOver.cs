@@ -18,7 +18,7 @@ public class Script_GameOver : MonoBehaviour
     private void OnEnable()
     {
         dialoguePopup = FindObjectOfType<Script_DialoguePopup>();
-        dialoguePopup.DialoguePopup(6, "Everything Alright Up There? We Havent Heard From You Since This Morning!", false);
+        dialoguePopup.DialoguePopup(8, "We got the results back from your psych evaluation. You have been diagnosed with OCD. Please read the information provided.", false);
     }
 
     // Update is called once per frame

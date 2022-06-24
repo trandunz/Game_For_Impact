@@ -186,4 +186,12 @@ public class Script_TaskPanel : MonoBehaviour
         yield return new WaitForSeconds(_delay);
         AddOCDTask(true);
     }
+    public void StopAlarms()
+    {
+        if (InternalVoice.isPlaying)
+        {
+            InternalVoice.Stop();
+            RedLight.DisableLight();
+        }
+    }
 }

@@ -8,6 +8,7 @@ public class Script_ShipDestination : MonoBehaviour
     Slider slider;
     [SerializeField] float TimeToDestination;
     Script_Player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,9 @@ public class Script_ShipDestination : MonoBehaviour
     void Update()
     {
         if (!player.IsInteracting())
+        {
             slider.value += Time.deltaTime / TimeToDestination;
+        }  
     }
 
     public float GetProgress()

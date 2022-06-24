@@ -117,6 +117,11 @@ public class Script_TaskPanel : MonoBehaviour
     }
     public void CompleteTask(string _task)
     {
+        if (InternalVoice.isPlaying)
+        {
+            InternalVoice.Stop();
+        }
+
         if (CurrentTask.text == _task)
         {
             Tasks.RemoveAt(0);

@@ -14,6 +14,7 @@ public class Script_ContaminationPrompt : MonoBehaviour
         {
             Audio.Stop();
             IsWarningPlaying = false;
+            GetComponentInParent<Script_DisinfectRoomManager>().StopAllWarnings();
         }
     }
 
@@ -23,6 +24,15 @@ public class Script_ContaminationPrompt : MonoBehaviour
         {
             Audio.Play();
             IsWarningPlaying = true;
+        }
+    }
+
+    public void StopWarning()
+    {
+        if (Audio.isPlaying)
+        {
+            Audio.Stop();
+            IsWarningPlaying = false;
         }
     }
 }

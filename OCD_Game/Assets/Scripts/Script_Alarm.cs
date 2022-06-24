@@ -8,6 +8,7 @@ public class Script_Alarm : MonoBehaviour
     [SerializeField] AudioSource TaskCompleteAudioSource;
     [SerializeField] AudioClip taskComplete;
     [SerializeField] float volumeIncreasePerSecond;
+    public float fVolume;
 
     private void Start()
     {
@@ -17,9 +18,15 @@ public class Script_Alarm : MonoBehaviour
     {
         if (audioSource != null)
         {
-            if (audioSource.volume <= 1)
+            if (audioSource.volume < 1)
             {
                 audioSource.volume += Time.deltaTime * volumeIncreasePerSecond;
+                fVolume = audioSource.volume;
+
+                if (audioSource.volume > 1)
+                {
+                    audioSource.volume = 1;
+                }
             }
         }
     }

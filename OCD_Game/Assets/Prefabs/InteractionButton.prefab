@@ -58,7 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd56b08e3a02fc4e9bfe9d4c13961e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPanel: {fileID: 0}
+  TaskPanel: {fileID: 0}
+  TaskName: 
 --- !u!1 &8647637849677780460
 GameObject:
   m_ObjectHideFlags: 0

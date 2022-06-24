@@ -9,10 +9,14 @@ public class Script_Player : MonoBehaviour
     Camera FPSCamera;
     bool IsInteractingWithTask = false;
     Script_InteractionText InteractionText;
+    Script_TaskPanel TaskList;
+
+    public string PlayerLocation = "Common Space";
 
     [SerializeField] float InteractionDistance = 3.0f;
     private void Start()
     {
+        TaskList = FindObjectOfType<Script_TaskPanel>();
         FPSCamera = GetComponentInChildren<Camera>();
         InteractionText = FindObjectOfType<Script_InteractionText>();
     }
@@ -22,21 +26,38 @@ public class Script_Player : MonoBehaviour
     }
     private void Interact()
     {
-        InteractionText.ClearInteractionText();
+        if (InteractionText)
+            InteractionText.ClearInteractionText();
+
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out InteractHit, InteractionDistance))
         {
             Transform hitTransform = InteractHit.transform;
             if (hitTransform.tag == "Interactable")
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                Script_TaskInteractable interactableScript = hitTransform.GetComponent<Script_TaskInteractable>();
+                if (Input.GetKeyDown(KeyCode.E) && !IsInteractingWithTask)
                 {
                     Debug.Log("Interacted!");
                     IsInteractingWithTask = true;
-                    hitTransform.GetComponent<Script_TaskInteractable>().Interact();
+                    interactableScript.Interact();
                 }
                 else if (!IsInteractingWithTask)
                 {
-                    InteractionText.ShowInteractionText();
+                    if (InteractionText)
+                        InteractionText.ShowInteractionText();
+                }
+            }
+            if (hitTransform.tag == "KeyPad")
+            {
+                Script_Keypad keypadScript = hitTransform.GetComponent<Script_Keypad>();
+                if (Input.GetKeyDown(KeyCode.E) && !IsInteractingWithTask)
+                {
+                    keypadScript.Interact();
+                }
+                else
+                {
+                    if (InteractionText)
+                        InteractionText.ShowInteractionText();
                 }
             }
         }
@@ -57,6 +78,14 @@ public class Script_Player : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    public void SetCharacterControllerActive(bool _active)
+    {
+        GetComponentInChildren<CharacterController>().gameObject.SetActive(_active);
     }
     #endregion
 }

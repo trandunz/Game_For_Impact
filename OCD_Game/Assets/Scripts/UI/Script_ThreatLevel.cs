@@ -6,41 +6,68 @@ using UnityEngine.UI;
 public class Script_ThreatLevel : MonoBehaviour
 {
     #region Private
-    Slider ThreatSlider;
-    float ThrealLevel;
-    [SerializeField] float ThreatSpeed;
+    float ThreatlLevel;
     float ThreatPauseTimer = 0.0f;
+    Script_PauseMenu PauseMenu;
+    [SerializeField] Image[] ThreatImages;
+    [SerializeField] Image MaxThreat;
+    [SerializeField] float ThreatLevelPerSecond;
     [SerializeField] float ThreatPauseTime = 0.0f;
-    // Start is called before the first frame update
+
     void Start()
     {
-        ThreatSlider = GetComponentInChildren<Slider>();
+        PauseMenu = FindObjectOfType<Script_PauseMenu>();
+        foreach (Image image in ThreatImages)
+        {
+            image.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!PauseMenu.IsPaused())
+        {
+            if (ThreatPauseTimer > 0)
+            {
+                ThreatPauseTimer -= Time.deltaTime;
+            }
+            else if (ThreatlLevel < ThreatImages.Length)
+            {
+                ThreatlLevel += Time.deltaTime * ThreatLevelPerSecond;
+            }
 
-        if (ThreatPauseTimer > 0)
-        {
-            ThreatPauseTimer -= Time.deltaTime;
+            foreach (Image image in ThreatImages)
+            {
+                image.gameObject.SetActive(false);
+            }
+            for (int i = 0; i < (int)(ThreatlLevel); i++)
+            {
+                if (i < ThreatImages.Length)
+                    ThreatImages[i].gameObject.SetActive(true);
+                else
+                    break;
+            }
+            if (ThreatImages[ThreatImages.Length - 1].isActiveAndEnabled)
+                MaxThreat.gameObject.SetActive(true);
+            else
+                MaxThreat.gameObject.SetActive(false);
         }
-        else
-        {
-            ThrealLevel += Time.deltaTime * ThreatSpeed;
-        }
-        ThreatSlider.value = ThrealLevel;
     }
     #endregion
 
     #region Public
-    public void DecreaseThreatLevel(float _value)
+    public float GetThreatLevel()
     {
-        ThrealLevel -= _value;
+        return ThreatlLevel / ThreatImages.Length;
+    }
+    public void DecreaseThreatLevel()
+    {
+        ThreatlLevel -= (ThreatImages.Length / 5);
         ThreatPauseTimer = ThreatPauseTime;
-        if (ThrealLevel <= 0)
+        if (ThreatlLevel <= 0)
         {
-            ThrealLevel = 0;
+            ThreatlLevel = 0;
         }
     }
     #endregion

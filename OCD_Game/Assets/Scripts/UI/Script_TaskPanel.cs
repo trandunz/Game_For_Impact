@@ -16,11 +16,13 @@ public class Script_TaskPanel : MonoBehaviour
     AudioSource InternalVoice;
     float RandomTaskTimer = 0.0f;
     [SerializeField] float RandomTaskInterval = 5.0f;
-
+    Script_Rotate RedLight;
 
     private void Start()
     {
-        foreach(string task in NormalTasks)
+        RedLight = FindObjectOfType<Script_Rotate>();
+
+        foreach (string task in NormalTasks)
         {
             Tasks.Add(task);
         }
@@ -51,6 +53,7 @@ public class Script_TaskPanel : MonoBehaviour
                     {
                         InternalVoice.clip = InteralVoiceClips[0];
                         InternalVoice.Play();
+                        RedLight.EnableLight();
                     }
                     break;
                 }
@@ -64,6 +67,7 @@ public class Script_TaskPanel : MonoBehaviour
                     {
                         InternalVoice.clip = InteralVoiceClips[1];
                         InternalVoice.Play();
+                        RedLight.EnableLight();
                     }
                     break;
                 }
@@ -77,6 +81,7 @@ public class Script_TaskPanel : MonoBehaviour
                     {
                         InternalVoice.clip = InteralVoiceClips[2];
                         InternalVoice.Play();
+                        RedLight.EnableLight();
                     }
                     
                     break;
@@ -91,11 +96,13 @@ public class Script_TaskPanel : MonoBehaviour
                     {
                         InternalVoice.clip = InteralVoiceClips[3];
                         InternalVoice.Play();
+                        RedLight.EnableLight();
                     }
                     break;
                 }
             default:
                 {
+                    RedLight.DisableLight();
                     InternalVoice.Stop();
                     break;
                 }
@@ -136,6 +143,7 @@ public class Script_TaskPanel : MonoBehaviour
         if (InternalVoice.isPlaying)
         {
             InternalVoice.Stop();
+            RedLight.DisableLight();
         }
 
         if (CurrentTask.text == _task)

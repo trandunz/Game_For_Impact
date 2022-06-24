@@ -10,6 +10,7 @@ public class Script_TaskScanForDebris : MonoBehaviour
     bool isScanning = false;
     Quaternion radarStartRotation;
     RectTransform rectTransform;
+    float amountRotated = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Script_TaskScanForDebris : MonoBehaviour
     private void OnEnable()
     {
         scanText.text = "COMMENCE SCAN";
+        amountRotated = 0.0f;
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class Script_TaskScanForDebris : MonoBehaviour
     {
         if (isScanning)
         {
+            amountRotated += 180 * Time.deltaTime;
             rectTransform.RotateAround(rectTransform.position, Vector3.back, 180 * Time.deltaTime);
         }
     }
@@ -42,10 +45,8 @@ public class Script_TaskScanForDebris : MonoBehaviour
     }
     IEnumerator ScanRoutine()
     {
-        rectTransform.RotateAround(rectTransform.position, Vector3.back, 180 * Time.deltaTime);
-        rectTransform.RotateAround(rectTransform.position, Vector3.back, 180 * Time.deltaTime);
         isScanning = true;
-        yield return new WaitUntil(() => (rectTransform.rotation.z <= radarStartRotation.z + 0.001) && (rectTransform.rotation.z >= radarStartRotation.z - 0.001));
+        yield return new WaitUntil(() => (Mathf.Round(amountRotated) == 720));
 
         StartCoroutine(FinishScanRoutine());
     }

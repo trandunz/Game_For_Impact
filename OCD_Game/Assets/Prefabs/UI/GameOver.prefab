@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Other Tasks Completed
+  m_Text: Irrelevant Tasks Completed
 --- !u!1 &1304391644800148315
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +523,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Detremental Tasks Completed
+  m_Text: Responsibilities Fulfilled
 --- !u!1 &6643652773893245678
 GameObject:
   m_ObjectHideFlags: 0

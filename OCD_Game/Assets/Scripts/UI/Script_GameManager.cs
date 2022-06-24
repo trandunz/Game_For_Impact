@@ -27,8 +27,8 @@ public class Script_GameManager : MonoBehaviour
         {
             lossPanel.SetActive(true);
             player.SetInteracting(true);
-            TaskPanel.StopAlarms();
-            DisinfectRoomManager.StopAllWarnings();
+            //TaskPanel.StopAlarms();
+            //DisinfectRoomManager.StopAllWarnings();
         }
     }
 

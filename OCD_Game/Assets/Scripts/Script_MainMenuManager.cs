@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Script_MainMenuManager : MonoBehaviour
 {
     static bool PlayedTriggerWarning = false;
+
     [SerializeField] float fTriggerWarningTime = 10.0f;
     float fTriggerWarningCounter = 0.0f;
     [SerializeField] float fDifferInAlpha;
@@ -22,8 +23,11 @@ public class Script_MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        // get the trigger text and calculate how much to lower the alpha by
         TriggerText = TriggerWarning.GetComponentInChildren<Text>();
         fDifferInAlpha = TriggerText.color.r * fTriggerWarningTime * 0.2f;
+
+        // check if the trigger warning screen has alread been played
         if (PlayedTriggerWarning)
         {
             MainMenu.SetActive(true);
@@ -34,27 +38,32 @@ public class Script_MainMenuManager : MonoBehaviour
 
     private void Update()
     {
+        // check if the trigger warning has finished playing
         if (fTriggerWarningTime > fTriggerWarningCounter)
         {
             fTriggerWarningCounter += Time.deltaTime;
 
-            if (Input.GetMouseButtonDown(0) && fTriggerWarningCounter > 0.5f && fTriggerWarningCounter < fTriggerWarningTime * 0.8f)
+            // if the user clicks the mouse, skip to the time in the counter to start the text fade
+            if (Input.GetMouseButtonDown(0) && fTriggerWarningCounter > 0.2f && fTriggerWarningCounter < fTriggerWarningTime * 0.85f)
             {
                 if (TriggerWarning.activeSelf)
                 {
-                    fTriggerWarningCounter = fTriggerWarningTime * 0.8f;
+                    fTriggerWarningCounter = fTriggerWarningTime * 0.85f;
                 }
             }
 
-            if (fTriggerWarningCounter > fTriggerWarningTime * 0.9)
+            // check if the text should start fading
+            if (fTriggerWarningCounter > fTriggerWarningTime * 0.85)
             {
                 TriggerText.color = new Color(TriggerText.color.r, TriggerText.color.g, TriggerText.color.b, TriggerText.color.a - fDifferInAlpha * Time.deltaTime);
             }
 
+            // check if the manager needs to load the main menu
             if (fTriggerWarningTime <= fTriggerWarningCounter)
             {
                 MainMenu.SetActive(true);
                 TriggerWarning.SetActive(false);
+                // used to make sure the trigger warning only plays once on launch.
                 PlayedTriggerWarning = true;
             }
         }

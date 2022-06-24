@@ -69,6 +69,11 @@ public class Script_BaseTaskPanel : MonoBehaviour
         StartCoroutine(ReturnToMainMenuRoutine());
     }
 
+    public void GoToOCDInfo()
+    {
+        StartCoroutine(GoToOCDInfoRoutine());
+    }
+
     IEnumerator ReturnToMainMenuRoutine()
     {
         if (FadingScreenUI.IsScreenFading() == false)
@@ -76,6 +81,16 @@ public class Script_BaseTaskPanel : MonoBehaviour
             FadingScreenUI.CloseEyes();
             yield return new WaitUntil(() => FadingScreenUI.IsScreenFading() == false);
             SceneManager.LoadScene(0);
+        }
+    }
+
+    IEnumerator GoToOCDInfoRoutine()
+    {
+        if (FadingScreenUI.IsScreenFading() == false)
+        {
+            FadingScreenUI.CloseEyes();
+            yield return new WaitUntil(() => FadingScreenUI.IsScreenFading() == false);
+            SceneManager.LoadScene(2);
         }
     }
 

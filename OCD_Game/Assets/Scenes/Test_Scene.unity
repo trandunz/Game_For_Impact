@@ -6778,7 +6778,7 @@ PrefabInstance:
     - target: {fileID: 2217214831669119639, guid: 5392b5792f127f64d95dd0d69a21084e,
         type: 3}
       propertyPath: TaskName
-      value: Orient Ship
+      value: Steer Ship
       objectReference: {fileID: 0}
     - target: {fileID: 2217214831669119639, guid: 5392b5792f127f64d95dd0d69a21084e,
         type: 3}
@@ -7190,8 +7190,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3818618851349066568, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.20019531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818618851349066568, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.6967163
+      value: -0.69677734
       objectReference: {fileID: 0}
     - target: {fileID: 4720701162685137572, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
@@ -7248,6 +7253,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6818800541928760122, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818800541928760122, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6937053669063460696, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -7294,6 +7309,11 @@ PrefabInstance:
       propertyPath: voiceClip
       value: 
       objectReference: {fileID: 8300000, guid: c896f3eeb4d78554bbed1458f3a837af, type: 3}
+    - target: {fileID: 8833686650013262652, guid: 314c90de174fb8f4f873aa0008a48b6c,
+        type: 3}
+      propertyPath: NormalTasks.Array.data[0]
+      value: Steer Ship
+      objectReference: {fileID: 0}
     - target: {fileID: 8973237972167253801, guid: 314c90de174fb8f4f873aa0008a48b6c,
         type: 3}
       propertyPath: m_AnchorMax.x

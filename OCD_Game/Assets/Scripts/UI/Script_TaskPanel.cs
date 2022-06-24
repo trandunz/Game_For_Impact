@@ -12,7 +12,8 @@ public class Script_TaskPanel : MonoBehaviour
     List<string> CompletedOCDTasks = new List<string>();
     List<string> CompletedNormalTasks = new List<string>();
     Script_DialoguePopup dialoguePopup;
-
+    [SerializeField] AudioClip[] InteralVoiceClips;
+    AudioSource InternalVoice;
     float RandomTaskTimer = 0.0f;
     [SerializeField] float RandomTaskInterval = 5.0f;
 
@@ -24,6 +25,7 @@ public class Script_TaskPanel : MonoBehaviour
             Tasks.Add(task);
         }
         dialoguePopup = FindObjectOfType<Script_DialoguePopup>();
+        InternalVoice = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -36,6 +38,51 @@ public class Script_TaskPanel : MonoBehaviour
         {
             CurrentTask.text = Tasks[0];
             OtherTasks.text = Tasks[1];
+        }
+        switch(Tasks[0])
+        {
+            case "Check AC Temp":
+                {
+                    if (!InternalVoice.isPlaying)
+                    {
+                        InternalVoice.clip = InteralVoiceClips[0];
+                        InternalVoice.Play();
+                    }
+                    break;
+                }
+            case "Organize Food":
+                {
+                    if (!InternalVoice.isPlaying)
+                    {
+                        InternalVoice.clip = InteralVoiceClips[1];
+                        InternalVoice.Play();
+                    }
+                    break;
+                }
+            case "Config Thrust":
+                {
+                    if (!InternalVoice.isPlaying)
+                    {
+                        InternalVoice.clip = InteralVoiceClips[2];
+                        InternalVoice.Play();
+                    }
+                    
+                    break;
+                }
+            case "Scan Debris":
+                {
+                    if (!InternalVoice.isPlaying)
+                    {
+                        InternalVoice.clip = InteralVoiceClips[3];
+                        InternalVoice.Play();
+                    }
+                    break;
+                }
+            default:
+                {
+                    InternalVoice.Stop();
+                    break;
+                }
         }
     }
     public string GetCurrentTask()

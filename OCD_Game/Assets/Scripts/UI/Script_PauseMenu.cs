@@ -37,6 +37,10 @@ public class Script_PauseMenu : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Script_Player>();
+        
+    }
+    private void Awake()
+    {
         buttons.SetActive(false);
     }
     private void Update()
